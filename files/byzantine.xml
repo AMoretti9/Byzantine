@@ -1,0 +1,152 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="requirements" id="6" collapsed="true" x="-2182" y="-991"></block>
+  <block type="SoS$s" id="33" x="-1399" y="-836">
+    <field name="name">Byzantine</field>
+    <field name="sos_type">acknowledged</field>
+    <field name="#system">+</field>
+    <field name="#evolution">+</field>
+    <field name="#dependability_guarantee">+</field>
+    <field name="#behaviour">+</field>
+    <field name="#security">+</field>
+    <statement name="is_composed_of:system">
+      <block type="CS$s" id="35" collapsed="true">
+        <field name="cardinality">1</field>
+        <field name="name">OHC</field>
+        <field name="system_type">autonomous</field>
+        <field name="#boundary">+</field>
+        <field name="#state_space">+</field>
+        <field name="#HMI">+</field>
+        <field name="#CPS">+</field>
+        <field name="#service">+</field>
+        <field name="#role_player">+</field>
+        <field name="#physical_system">+</field>
+        <field name="#RUI">+</field>
+        <field name="#dependability_guarantee">+</field>
+        <field name="#fault_containment_region">+</field>
+        <field name="#MAPE_algorithm">+</field>
+        <field name="#security">+</field>
+        <field name="#clock">+</field>
+        <field name="#system_resource">+</field>
+        <field name="#architectural_style">+</field>
+        <field name="#subsystem">+</field>
+        <field name="#state_variable">+</field>
+        <field name="#interface">+</field>
+        <field name="#dynamicity">+</field>
+        <next>
+          <block type="CS$s" id="37" collapsed="true">
+            <field name="cardinality">2</field>
+            <field name="name">General</field>
+            <field name="system_type">autonomous</field>
+            <field name="#boundary">+</field>
+            <field name="#state_space">+</field>
+            <field name="#HMI">+</field>
+            <field name="#CPS">+</field>
+            <field name="#service">+</field>
+            <field name="#role_player">+</field>
+            <field name="#physical_system">+</field>
+            <field name="#RUI">+</field>
+            <field name="#dependability_guarantee">+</field>
+            <field name="#fault_containment_region">+</field>
+            <field name="#MAPE_algorithm">+</field>
+            <field name="#security">+</field>
+            <field name="#clock">+</field>
+            <field name="#system_resource">+</field>
+            <field name="#architectural_style">+</field>
+            <field name="#subsystem">+</field>
+            <field name="#state_variable">+</field>
+            <field name="#interface">+</field>
+            <field name="#dynamicity">+</field>
+            <next>
+              <block type="CS$s" id="39" collapsed="true">
+                <field name="cardinality">3</field>
+                <field name="name">Lieutenant_1</field>
+                <field name="system_type">autonomous</field>
+                <field name="#boundary">+</field>
+                <field name="#state_space">+</field>
+                <field name="#HMI">+</field>
+                <field name="#CPS">+</field>
+                <field name="#service">+</field>
+                <field name="#role_player">+</field>
+                <field name="#physical_system">+</field>
+                <field name="#RUI">+</field>
+                <field name="#dependability_guarantee">+</field>
+                <field name="#fault_containment_region">+</field>
+                <field name="#MAPE_algorithm">+</field>
+                <field name="#security">+</field>
+                <field name="#clock">+</field>
+                <field name="#system_resource">+</field>
+                <field name="#architectural_style">+</field>
+                <field name="#subsystem">+</field>
+                <field name="#state_variable">+</field>
+                <field name="#interface">+</field>
+                <field name="#dynamicity">+</field>
+                <next>
+                  <block type="CS$s" id="41" collapsed="true">
+                    <field name="cardinality">4</field>
+                    <field name="name">Lieutenant_2</field>
+                    <field name="system_type">autonomous</field>
+                    <field name="#boundary">+</field>
+                    <field name="#state_space">+</field>
+                    <field name="#HMI">+</field>
+                    <field name="#CPS">+</field>
+                    <field name="#service">+</field>
+                    <field name="#role_player">+</field>
+                    <field name="#physical_system">+</field>
+                    <field name="#RUI">+</field>
+                    <field name="#dependability_guarantee">+</field>
+                    <field name="#fault_containment_region">+</field>
+                    <field name="#MAPE_algorithm">+</field>
+                    <field name="#security">+</field>
+                    <field name="#clock">+</field>
+                    <field name="#system_resource">+</field>
+                    <field name="#architectural_style">+</field>
+                    <field name="#subsystem">+</field>
+                    <field name="#state_variable">+</field>
+                    <field name="#interface">+</field>
+                    <field name="#dynamicity">+</field>
+                    <next>
+                      <block type="CS$s" id="43" collapsed="true">
+                        <field name="cardinality">5</field>
+                        <field name="name">Lieutenant_3</field>
+                        <field name="system_type">autonomous</field>
+                        <field name="#boundary">+</field>
+                        <field name="#state_space">+</field>
+                        <field name="#HMI">+</field>
+                        <field name="#CPS">+</field>
+                        <field name="#service">+</field>
+                        <field name="#role_player">+</field>
+                        <field name="#physical_system">+</field>
+                        <field name="#RUI">+</field>
+                        <field name="#dependability_guarantee">+</field>
+                        <field name="#fault_containment_region">+</field>
+                        <field name="#MAPE_algorithm">+</field>
+                        <field name="#security">+</field>
+                        <field name="#clock">+</field>
+                        <field name="#system_resource">+</field>
+                        <field name="#architectural_style">+</field>
+                        <field name="#subsystem">+</field>
+                        <field name="#state_variable">+</field>
+                        <field name="#interface">+</field>
+                        <field name="#dynamicity">+</field>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="environment$s" id="45" collapsed="true" x="-2192" y="-466">
+    <field name="name">Environment</field>
+    <field name="#situation_assessment">+</field>
+    <field name="#action">+</field>
+    <field name="#entity">+</field>
+    <field name="#state_variable">+</field>
+    <field name="#state_variable">+</field>
+    <field name="#system">+</field>
+    <field name="#evolution">+</field>
+  </block>
+</xml>
