@@ -40,6 +40,8 @@ int random_traitor;  // used to draw the traitor only one time
 int generalElected; // uid of the kilobot chosen as general
 int traitorElected; // uid of the kilobot chosen as traitor
 
+int time_to_move[4]; // used to define the round of movement for each kilobot
+
 // TRASMETTERE MESSAGGIO
 message_t *message_tx() {
 	return &message;
@@ -97,7 +99,7 @@ void setup()
 {
 	
 	message.type=NORMAL; //TX
-	message.data[3] = NULL; //TX - (contenuto del messaggio)
+	//message.data[3] = NULL; //TX - (contenuto del messaggio)
 	message.crc=message_crc(&message); //TX
 	
 	random_general=0;
@@ -160,6 +162,8 @@ int general_draw(){
 	random_general=1;
 	printf("===============\nINFO: the GENERAL is the kilobot with uid: %d\n===============\n", general);
 	
+	time_to_move_impl(general);
+	
 	return general;
 	
 }
@@ -181,4 +185,26 @@ int traitor_draw(){
 	
 	return traitor;
 		
+}
+
+void time_to_move_impl(int general){
+		
+	if(general == 0){
+		time_to_move[0]=0; time_to_move[1]=1; time_to_move[2]=2; time_to_move[3] = 3;
+		printf("===============\nINFO: order of movements (kilo_uid): 0, 1, 2, 3\n===============\n");
+		
+	} else if (general==1){
+		time_to_move[0]=1; time_to_move[1]=0; time_to_move[2]=2; time_to_move[3] = 3;
+		printf("===============\nINFO: order of movements (kilo_uid): 1, 0, 2, 3\n===============\n");
+		
+	} else if (general==2){
+		time_to_move[0]=2; time_to_move[1]=0; time_to_move[2]=1; time_to_move[3] = 3;
+		printf("===============\nINFO: order of movements (kilo_uid): 2, 0, 1, 3\n===============\n");
+		
+	} else if (general==3){
+		time_to_move[0]=3; time_to_move[1]=0; time_to_move[2]=1; time_to_move[3] = 2;
+			printf("===============\nINFO: order of movements (kilo_uid): 3, 0, 1, 2\n===============\n");
+			
+	}
+	
 }
