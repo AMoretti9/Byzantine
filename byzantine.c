@@ -34,6 +34,11 @@ int message_sent=0; //TX - variablile flag per tenere traccia della trasmissione
 int new_message=0; //RX - variabile usata per indicare la presenza di nuovi messaggi (usata dal listener)
 
 
+//VARIABILI DI SERVIZIO
+int random_general;  // used to draw the general only one time
+int random_traitor;  // used to draw the traitor only one time
+int generalElected; // uid of the kilobot chosen as general
+int traitorElected; // uid of the kilobot chosen as traitor
 
 // TRASMETTERE MESSAGGIO
 message_t *message_tx() {
@@ -92,8 +97,11 @@ void setup()
 {
 	
 	message.type=NORMAL; //TX
-	message.data[0] = NULL; //TX - (contenuto del messaggio)
+	message.data[3] = NULL; //TX - (contenuto del messaggio)
 	message.crc=message_crc(&message); //TX
+	
+	random_general=0;
+	random_traitor=0;
 	
 	if (kilo_uid < 4)
     set_color(RGB(3,3,3));  // all kilobots start white
@@ -101,11 +109,33 @@ void setup()
 	
 }
 
-void loop() {
+void loop() {   //32 ticks = 1 sec
 	
-	
-	
+	if(kilo_ticks<32){
+		if(random_general==0){
+			generalElected=general_draw();
 			
+		}
+	}
+	
+	if(kilo_ticks>32 && kilo_ticks<96){
+		if(kilo_uid==generalElected){
+			set_color(RGB(0,0,3));
+		}
+	}
+	
+	if(kilo_ticks>96 && kilo_ticks<128){
+		if(random_traitor==0){
+			traitorElected=traitor_draw();
+		}
+	}
+	
+	if(kilo_ticks>128 && kilo_ticks<192){
+		if(kilo_uid==traitorElected){
+			set_color(RGB(3,2,0));
+		}
+	}
+	
 }
 
 int main() {
@@ -120,5 +150,35 @@ int main() {
     return 0;
 }
 
+int general_draw(){
+	
+	printf("===============\nINFO: drawing general... \n===============\n");
+	
+	srand ( time(NULL) );
+	
+	int general = rand() %4;
+	random_general=1;
+	printf("===============\nINFO: the GENERAL is the kilobot with uid: %d\n===============\n", general);
+	
+	return general;
+	
+}
 
-
+int traitor_draw(){
+	
+	printf("===============\nINFO: drawing general... \n===============\n");
+	
+	srand ( time(NULL) );
+	
+	int traitor = rand() %5;
+	random_traitor=1;
+	
+	if(traitor==4){
+		printf("===============\nINFO: No kilobot as the traitor\n===============\n");
+	} else{
+			printf("===============\nINFO: the TRAITOR is the kilobot with uid: %d\n===============\n", traitor);
+	}
+	
+	return traitor;
+		
+}
