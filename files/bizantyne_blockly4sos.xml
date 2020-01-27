@@ -1,0 +1,2451 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="requirements" id="6" x="-2297" y="-1097">
+    <statement name="Architecture_requirements">
+      <block type="simple_requirement" id="60">
+        <field name="req_id">E1</field>
+        <field name="title">The surface must be smooth, plan and reflective</field>
+        <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. State variable : surface_property
+        </requirement>
+        <data>61</data>
+        <next>
+          <block type="simple_requirement" id="63">
+            <field name="req_id">E2</field>
+            <field name="title">The surface must be 1 m X 1m</field>
+            <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. State variable : surface_area
+            </requirement>
+            <data>64</data>
+            <next>
+              <block type="simple_requirement" id="66">
+                <field name="req_id">R01</field>
+                <field name="title">System composed by 4 kilobots</field>
+                <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. CS : OHC
+2. SoS : Byzantine
+3. CS : General
+4. CS : Lieutenant_1
+5. CS : Lieutenant_2
+6. CS : Lieutenant_3
+                </requirement>
+                <data>35,33,37,39,41,43</data>
+                <next>
+                  <block type="simple_requirement" id="72">
+                    <field name="req_id">R02</field>
+                    <field name="title">Kilobots start stationary, in square position with same distance, facing the center of the square</field>
+                    <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. State variable : Movement of G
+2. State variable : Movement of L1
+3. State variable : Movement of L2
+4. State variable : Movement of L3
+                    </requirement>
+                    <data>69,79,87,95</data>
+                    <next>
+                      <block type="simple_requirement" id="98">
+                        <field name="req_id">R03</field>
+                        <field name="title">All kilobots start with White led</field>
+                        <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. State variable : Led of G
+2. State variable : Led of L1
+3. State variable : Led of L2
+4. State variable : Led of L3
+                        </requirement>
+                        <data>99,101,103,105</data>
+                        <next>
+                          <block type="simple_requirement" id="108">
+                            <field name="req_id">R04</field>
+                            <field name="title">General chosen random</field>
+                            <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. Dynamic service : Eligibility of "General"
+2. Service : Select the general
+                            </requirement>
+                            <data>109,362</data>
+                            <next>
+                              <block type="simple_requirement" id="112">
+                                <field name="req_id">R05</field>
+                                <field name="title">Only 1 kilobot is the General</field>
+                                <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. State variable : Role of G
+                                </requirement>
+                                <data>113</data>
+                                <next>
+                                  <block type="simple_requirement" id="116">
+                                    <field name="req_id">R06</field>
+                                    <field name="title">General's led is Blue</field>
+                                    <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. State variable : Led of G
+                                    </requirement>
+                                    <data>117</data>
+                                    <next>
+                                      <block type="simple_requirement" id="120">
+                                        <field name="req_id">R07</field>
+                                        <field name="title">The other 3 kilobots are automatically Lieutenants</field>
+                                        <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. State variable : Role of L1
+2. State variable : Role of L2
+3. State variable : Role of L3
+4. Service : L1 auto-elect lieutenant1
+5. Service : L2 auto-elect lieutenant2
+6. Service : L3 auto-elect lieutenant3
+                                        </requirement>
+                                        <data>122,124,129,386,388,390</data>
+                                        <next>
+                                          <block type="simple_requirement" id="192">
+                                            <field name="req_id">S1</field>
+                                            <field name="title">Lieutenants are enumerated from 1 to 3, according with their uid, in ascending way</field>
+                                            <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. State variable : L1 id
+2. State variable : L2 id
+3. State variable : L3 id
+                                            </requirement>
+                                            <data>193,194,195</data>
+                                            <next>
+                                              <block type="simple_requirement" id="132">
+                                                <field name="req_id">R08</field>
+                                                <field name="title">Lieutenants' led still White</field>
+                                                <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. State variable : Led of L1
+2. State variable : Led of L2
+3. State variable : Led of L3
+                                                </requirement>
+                                                <data>101,103,105</data>
+                                                <next>
+                                                  <block type="simple_requirement" id="138">
+                                                    <field name="req_id">R09</field>
+                                                    <field name="title">Traitor chosen random. Max 1 traitor of 4 kilobots</field>
+                                                    <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. Dynamic service : Eligibility of "Traitor"
+2. Dynamic service : Eligibility of "Traitor"
+3. Dynamic service : Eligibility of "Traitor"
+4. Dynamic service : Eligibility of "Traitor"
+5. Service : Select the traitor
+                                                    </requirement>
+                                                    <data>139,140,141,142,364</data>
+                                                    <next>
+                                                      <block type="simple_requirement" id="144">
+                                                        <field name="req_id">R10</field>
+                                                        <field name="title">Only the traitor's led is Yellow</field>
+                                                        <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. State variable : Led of G
+2. State variable : Led of L1
+3. State variable : Led of L2
+4. State variable : Led of L3
+                                                        </requirement>
+                                                        <data>147,151,161,165</data>
+                                                        <next>
+                                                          <block type="simple_requirement" id="207">
+                                                            <field name="req_id">R13</field>
+                                                            <field name="title">The general move first</field>
+                                                            <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. State variable : Round of movement
+                                                            </requirement>
+                                                            <data>210</data>
+                                                            <next>
+                                                              <block type="simple_requirement" id="213">
+                                                                <field name="req_id">R14</field>
+                                                                <field name="title">The lieutenants move theirself from lowest to highest uid</field>
+                                                                <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. State variable : Round of movement
+2. State variable : Round of movement
+3. State variable : Round of movement
+                                                                </requirement>
+                                                                <data>214,216,218</data>
+                                                                <next>
+                                                                  <block type="simple_requirement" id="231">
+                                                                    <field name="req_id">R15</field>
+                                                                    <field name="title">The OHC send the commands to the kilobots</field>
+                                                                    <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. RUMI : OCH_interface
+                                                                    </requirement>
+                                                                    <data>235</data>
+                                                                    <next>
+                                                                      <block type="simple_requirement" id="240">
+                                                                        <field name="req_id">R16</field>
+                                                                        <field name="title">Each kilobot can send broadcast message</field>
+                                                                        <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. RUMI : General_interface
+2. RUMI : Lieutenant1_interface
+3. RUMI : Lieutenant2_interface
+4. RUMI : Lieutenant3_interface
+                                                                        </requirement>
+                                                                        <data>241,242,243,244</data>
+                                                                        <next>
+                                                                          <block type="simple_requirement" id="267">
+                                                                            <field name="req_id">R17</field>
+                                                                            <field name="title">Each kilobot send the command: 1 attack or 0 retreat</field>
+                                                                            <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. Service : G send attack or retreat command
+2. Service : L1 send attack or retreat command
+3. Service : L2 send attack or retreat command
+4. Service : L3 send attack or retreat command
+                                                                            </requirement>
+                                                                            <data>268,275,281,286</data>
+                                                                            <next>
+                                                                              <block type="simple_requirement" id="292">
+                                                                                <field name="req_id">R18</field>
+                                                                                <field name="title">Lieutenants catch only the proper command</field>
+                                                                                <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. Service : G receives attack or retreat command
+2. Service : L2 receives attack or retreat command
+3. Service : L1 receives attack or retreat command
+4. Service : L3 receives attack or retreat command
+                                                                                </requirement>
+                                                                                <data>295,480,484,486,491</data>
+                                                                                <next>
+                                                                                  <block type="simple_requirement" id="494">
+                                                                                    <field name="req_id">R19</field>
+                                                                                    <field name="title">General as traitor, send 2 equal commands and 1 different command</field>
+                                                                                    <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. Service : G send attack or retreat command
+                                                                                    </requirement>
+                                                                                    <data>268</data>
+                                                                                    <next>
+                                                                                      <block type="simple_requirement" id="496">
+                                                                                        <field name="req_id">R20</field>
+                                                                                        <field name="title">Lieutenants as traitor, send differrent command from the received by the command</field>
+                                                                                        <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. Service : L1 send attack or retreat command
+2. Service : L2 send attack or retreat command
+3. Service : L3 send attack or retreat command
+                                                                                        </requirement>
+                                                                                        <data>275,281,286</data>
+                                                                                        <next>
+                                                                                          <block type="simple_requirement" id="498">
+                                                                                            <field name="req_id">R21</field>
+                                                                                            <field name="title">Finally, all kilobots perform the command received in majority</field>
+                                                                                            <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. Service : G performs goal
+2. Service : L1 perform goal
+3. Service : L2 perform goal
+4. Service : L3 perform goal
+                                                                                            </requirement>
+                                                                                            <data>502,507,512,517</data>
+                                                                                            <next>
+                                                                                              <block type="simple_requirement" id="520">
+                                                                                                <field name="req_id">R22</field>
+                                                                                                <field name="title">If kilobot attacks, the led is Green</field>
+                                                                                                <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. State variable : Led of G
+2. State variable : Led of L1
+3. State variable : Led of L2
+4. State variable : Led of L3
+                                                                                                </requirement>
+                                                                                                <data>527,529,531,533</data>
+                                                                                                <next>
+                                                                                                  <block type="simple_requirement" id="522">
+                                                                                                    <field name="req_id">R23</field>
+                                                                                                    <field name="title">If kilobot attacks, it tourns around</field>
+                                                                                                    <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. Service : G tourns around
+2. Service : L1 turns around
+3. Service : L2 turns around
+4. Service : L3 turns around
+                                                                                                    </requirement>
+                                                                                                    <data>543,549,555</data>
+                                                                                                    <next>
+                                                                                                      <block type="simple_requirement" id="524">
+                                                                                                        <field name="req_id">R24</field>
+                                                                                                        <field name="title">If kilobot retreats, the led is Red</field>
+                                                                                                        <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. State variable : Led of G
+2. State variable : Led of L1
+3. State variable : Led of L2
+4. State variable : Led of L3
+                                                                                                        </requirement>
+                                                                                                        <data>535,537,539,541</data>
+                                                                                                        <next>
+                                                                                                          <block type="simple_requirement" id="526">
+                                                                                                            <field name="req_id">R25</field>
+                                                                                                            <field name="title">If kilobot retreats, it runs away from other</field>
+                                                                                                            <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. Service : G runs away
+2. Service : L1 runs away
+3. Service : L2 runs away
+4. Service : L3 runs away
+                                                                                                            </requirement>
+                                                                                                            <data>544,550,557</data>
+                                                                                                          </block>
+                                                                                                        </next>
+                                                                                                      </block>
+                                                                                                    </next>
+                                                                                                  </block>
+                                                                                                </next>
+                                                                                              </block>
+                                                                                            </next>
+                                                                                          </block>
+                                                                                        </next>
+                                                                                      </block>
+                                                                                    </next>
+                                                                                  </block>
+                                                                                </next>
+                                                                              </block>
+                                                                            </next>
+                                                                          </block>
+                                                                        </next>
+                                                                      </block>
+                                                                    </next>
+                                                                  </block>
+                                                                </next>
+                                                              </block>
+                                                            </next>
+                                                          </block>
+                                                        </next>
+                                                      </block>
+                                                    </next>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <statement name="Communication_requirements">
+      <block type="simple_requirement" id="168">
+        <field name="req_id">R11</field>
+        <field name="title">Each kilobot can move inside the box on his round</field>
+        <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. Service : G move inside the square
+2. Service : L1 move inside the square
+3. Service : L2 move inside the square
+4. Service : L3 move inside the square
+        </requirement>
+        <data>169,178,184,189</data>
+        <next>
+          <block type="simple_requirement" id="197">
+            <field name="req_id">R12</field>
+            <field name="title">After communicating, each kilobot comeback to his place</field>
+            <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. Service : G move to his place
+2. Service : L1 move to his place
+3. Service : L2 move to his place
+4. Service : L3 move to his place
+            </requirement>
+            <data>198,200,202,204</data>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="environment$s" id="45" x="-2845" y="-1068">
+    <field name="name">Environment</field>
+    <field name="#situation_assessment">+</field>
+    <field name="#action">+</field>
+    <field name="#entity">+</field>
+    <field name="#state_variable">+</field>
+    <field name="#state_variable">+</field>
+    <field name="#system">+</field>
+    <field name="#evolution">+</field>
+    <statement name="has:state_variable">
+      <block type="state_variable$s" id="61">
+        <field name="name">surface_property</field>
+        <field name="value">Smooth, plan and reflective</field>
+        <field name="#state">+</field>
+        <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. E1
+        </requirement>
+        <data>E1</data>
+        <next>
+          <block type="state_variable$s" id="64">
+            <field name="name">surface_area</field>
+            <field name="value">1 square meter</field>
+            <field name="#state">+</field>
+            <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. E2
+            </requirement>
+            <data>E2</data>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="SoS$s" id="33" x="-1399" y="-836">
+    <field name="name">Byzantine</field>
+    <field name="sos_type">acknowledged</field>
+    <field name="#system">+</field>
+    <field name="#evolution">+</field>
+    <field name="#dependability_guarantee">+</field>
+    <field name="#behaviour">+</field>
+    <field name="#security">+</field>
+    <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R01
+    </requirement>
+    <data>R01</data>
+    <statement name="is_composed_of:system">
+      <block type="CS$s" id="35">
+        <field name="cardinality">1</field>
+        <field name="name">OHC</field>
+        <field name="system_type">autonomous</field>
+        <field name="#boundary">+</field>
+        <field name="#state_space">+</field>
+        <field name="#HMI">+</field>
+        <field name="#CPS">+</field>
+        <field name="#service">+</field>
+        <field name="#role_player">+</field>
+        <field name="#physical_system">+</field>
+        <field name="#RUI">+</field>
+        <field name="#dependability_guarantee">+</field>
+        <field name="#fault_containment_region">+</field>
+        <field name="#MAPE_algorithm">+</field>
+        <field name="#security">+</field>
+        <field name="#clock">+</field>
+        <field name="#system_resource">+</field>
+        <field name="#architectural_style">+</field>
+        <field name="#subsystem">+</field>
+        <field name="#state_variable">+</field>
+        <field name="#interface">+</field>
+        <field name="#dynamicity">+</field>
+        <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R01
+        </requirement>
+        <data>R01</data>
+        <statement name="has_a:state_space">
+          <block type="state_space$i" id="358">
+            <field name="name">State Space of oHC</field>
+            <field name="#state">+</field>
+            <statement name="has:state">
+              <block type="state$s" id="359">
+                <field name="name">Communicating</field>
+              </block>
+            </statement>
+          </block>
+        </statement>
+        <statement name="provides:service">
+          <block type="service$s" id="362">
+            <field name="name">Select the general</field>
+            <field name="#state_variable">+</field>
+            <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R04
+            </requirement>
+            <data>R04</data>
+            <statement name="can_access:state_variable">
+              <block type="__link" id="363">
+                <field name="link_to">State variable / OHC communicates</field>
+                <data>state_variable : 360 : 0</data>
+              </block>
+            </statement>
+            <next>
+              <block type="service$s" id="364">
+                <field name="name">Select the traitor</field>
+                <field name="#state_variable">+</field>
+                <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R09
+                </requirement>
+                <data>R09</data>
+                <statement name="can_access:state_variable">
+                  <block type="__link" id="365">
+                    <field name="link_to">State variable / OHC communicates</field>
+                    <data>state_variable : 360 : 0</data>
+                  </block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <statement name="has:RUI">
+          <block type="RUMI$s" id="235">
+            <field name="name">OCH_interface</field>
+            <field name="has_connection">FALSE</field>
+            <field name="#connecting_strategy">+</field>
+            <field name="#interface_specification">+</field>
+            <field name="#interface_port">+</field>
+            <field name="#afferent_environment">+</field>
+            <field name="#efferent_environment">+</field>
+            <field name="#interface_model">+</field>
+            <field name="#service">+</field>
+            <field name="#message">+</field>
+            <field name="#RUMI">+</field>
+            <field name="#probe">+</field>
+            <field name="#security">+</field>
+            <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R15
+            </requirement>
+            <data>R15</data>
+            <statement name="connects:RUMI">
+              <block type="__link" id="261">
+                <field name="link_to">RUMI / General_interface</field>
+                <data>RUMI : 241 : 0</data>
+                <next>
+                  <block type="__link" id="262">
+                    <field name="link_to">RUMI / Lieutenant1_interface</field>
+                    <data>RUMI : 242 : 0</data>
+                    <next>
+                      <block type="__link" id="263">
+                        <field name="link_to">RUMI / Lieutenant2_interface</field>
+                        <data>RUMI : 243 : 0</data>
+                        <next>
+                          <block type="__link" id="264">
+                            <field name="link_to">RUMI / Lieutenant3_interface</field>
+                            <data>RUMI : 244 : 0</data>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </statement>
+        <statement name="has:state_variable">
+          <block type="state_variable$s" id="360">
+            <field name="name">OHC communicates</field>
+            <field name="value">Send</field>
+            <field name="#state">+</field>
+            <statement name="describes_a:state">
+              <block type="__link" id="361">
+                <field name="link_to">State / Communicating</field>
+                <data>state : 359 : 0</data>
+              </block>
+            </statement>
+          </block>
+        </statement>
+        <next>
+          <block type="CS$s" id="37">
+            <field name="cardinality">2</field>
+            <field name="name">General</field>
+            <field name="system_type">autonomous</field>
+            <field name="#boundary">+</field>
+            <field name="#state_space">+</field>
+            <field name="#HMI">+</field>
+            <field name="#CPS">+</field>
+            <field name="#service">+</field>
+            <field name="#role_player">+</field>
+            <field name="#physical_system">+</field>
+            <field name="#RUI">+</field>
+            <field name="#dependability_guarantee">+</field>
+            <field name="#fault_containment_region">+</field>
+            <field name="#MAPE_algorithm">+</field>
+            <field name="#security">+</field>
+            <field name="#clock">+</field>
+            <field name="#system_resource">+</field>
+            <field name="#architectural_style">+</field>
+            <field name="#subsystem">+</field>
+            <field name="#state_variable">+</field>
+            <field name="#interface">+</field>
+            <field name="#dynamicity">+</field>
+            <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R01
+            </requirement>
+            <data>R01</data>
+            <statement name="has_a:state_space">
+              <block type="state_space$i" id="67">
+                <field name="name">State Space of General</field>
+                <field name="#state">+</field>
+                <statement name="has:state">
+                  <block type="state$s" id="68">
+                    <field name="name">Starting</field>
+                    <next>
+                      <block type="state$s" id="110">
+                        <field name="name">Role</field>
+                        <next>
+                          <block type="state$s" id="146">
+                            <field name="name">Loyalty</field>
+                            <next>
+                              <block type="state$s" id="170">
+                                <field name="name">Movement</field>
+                                <next>
+                                  <block type="state$s" id="269">
+                                    <field name="name">Communicating</field>
+                                    <next>
+                                      <block type="state$s" id="499">
+                                        <field name="name">Perform goal</field>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+              </block>
+            </statement>
+            <statement name="provides:service">
+              <block type="service$s" id="169">
+                <field name="name">G move inside the square</field>
+                <field name="#state_variable">+</field>
+                <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R11
+                </requirement>
+                <data>R11</data>
+                <statement name="can_access:state_variable">
+                  <block type="__link" id="174">
+                    <field name="link_to">State variable / Movement of G</field>
+                    <data>state_variable : 69 : 0</data>
+                  </block>
+                </statement>
+                <next>
+                  <block type="service$s" id="198">
+                    <field name="name">G move to his place</field>
+                    <field name="#state_variable">+</field>
+                    <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R12
+                    </requirement>
+                    <data>R12</data>
+                    <statement name="can_access:state_variable">
+                      <block type="__link" id="199">
+                        <field name="link_to">State variable / Movement of G</field>
+                        <data>state_variable : 69 : 0</data>
+                      </block>
+                    </statement>
+                    <next>
+                      <block type="service$s" id="268">
+                        <field name="name">G send attack or retreat command</field>
+                        <field name="#state_variable">+</field>
+                        <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R17
+2. R19
+                        </requirement>
+                        <data>R17,R19</data>
+                        <statement name="can_access:state_variable">
+                          <block type="__link" id="271">
+                            <field name="link_to">State variable / G communicates</field>
+                            <data>state_variable : 270 : 0</data>
+                          </block>
+                        </statement>
+                        <next>
+                          <block type="service$s" id="295">
+                            <field name="name">G receives attack or retreat command</field>
+                            <field name="#state_variable">+</field>
+                            <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R18
+                            </requirement>
+                            <data>R18</data>
+                            <statement name="can_access:state_variable">
+                              <block type="__link" id="296">
+                                <field name="link_to">State variable / G communicates</field>
+                                <data>state_variable : 270 : 0</data>
+                              </block>
+                            </statement>
+                            <next>
+                              <block type="service$s" id="502">
+                                <field name="name">G performs goal</field>
+                                <field name="#state_variable">+</field>
+                                <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R21
+                                </requirement>
+                                <data>R21</data>
+                                <statement name="can_access:state_variable">
+                                  <block type="__link" id="503">
+                                    <field name="link_to">State variable / Perform goal</field>
+                                    <data>state_variable : 500 : 0</data>
+                                  </block>
+                                </statement>
+                                <next>
+                                  <block type="service$s" id="543">
+                                    <field name="name">G tourns around</field>
+                                    <field name="#state_variable">+</field>
+                                    <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R23
+                                    </requirement>
+                                    <data>R23</data>
+                                    <statement name="can_access:state_variable">
+                                      <block type="__link" id="545">
+                                        <field name="link_to">State variable / Perform goal</field>
+                                        <data>state_variable : 500 : 0</data>
+                                        <next>
+                                          <block type="__link" id="546">
+                                            <field name="link_to">State variable / Movement of G</field>
+                                            <data>state_variable : 172 : 0</data>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </statement>
+                                    <next>
+                                      <block type="service$s" id="544">
+                                        <field name="name">G runs away</field>
+                                        <field name="#state_variable">+</field>
+                                        <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R25
+                                        </requirement>
+                                        <data>R25</data>
+                                        <statement name="can_access:state_variable">
+                                          <block type="__link" id="547">
+                                            <field name="link_to">State variable / Perform goal</field>
+                                            <data>state_variable : 500 : 0</data>
+                                            <next>
+                                              <block type="__link" id="548">
+                                                <field name="link_to">State variable / Movement of G</field>
+                                                <data>state_variable : 172 : 0</data>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </statement>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+            <statement name="has:RUI">
+              <block type="RUMI$s" id="241">
+                <field name="name">General_interface</field>
+                <field name="has_connection">FALSE</field>
+                <field name="#connecting_strategy">+</field>
+                <field name="#interface_specification">+</field>
+                <field name="#interface_port">+</field>
+                <field name="#afferent_environment">+</field>
+                <field name="#efferent_environment">+</field>
+                <field name="#interface_model">+</field>
+                <field name="#service">+</field>
+                <field name="#message">+</field>
+                <field name="#RUMI">+</field>
+                <field name="#probe">+</field>
+                <field name="#security">+</field>
+                <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R16
+                </requirement>
+                <data>R16</data>
+                <statement name="connects:RUMI">
+                  <block type="__link" id="257">
+                    <field name="link_to">RUMI / OCH_interface</field>
+                    <data>RUMI : 235 : 0</data>
+                    <next>
+                      <block type="__link" id="258">
+                        <field name="link_to">RUMI / Lieutenant1_interface</field>
+                        <data>RUMI : 242 : 0</data>
+                        <next>
+                          <block type="__link" id="259">
+                            <field name="link_to">RUMI / Lieutenant2_interface</field>
+                            <data>RUMI : 243 : 0</data>
+                            <next>
+                              <block type="__link" id="260">
+                                <field name="link_to">RUMI / Lieutenant3_interface</field>
+                                <data>RUMI : 244 : 0</data>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+              </block>
+            </statement>
+            <statement name="has:state_variable">
+              <block type="state_variable$s" id="69">
+                <field name="name">Movement of G</field>
+                <field name="value">Stationary</field>
+                <field name="#state">+</field>
+                <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R02
+                </requirement>
+                <data>R02</data>
+                <statement name="describes_a:state">
+                  <block type="__link" id="70">
+                    <field name="link_to">State / Starting</field>
+                    <data>state : 68 : 0</data>
+                  </block>
+                </statement>
+                <next>
+                  <block type="state_variable$s" id="210">
+                    <field name="name">Round of movement</field>
+                    <field name="value">1</field>
+                    <field name="#state">+</field>
+                    <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R13
+                    </requirement>
+                    <data>R13</data>
+                    <statement name="describes_a:state">
+                      <block type="__link" id="211">
+                        <field name="link_to">State / Movement</field>
+                        <data>state : 170 : 0</data>
+                      </block>
+                    </statement>
+                    <next>
+                      <block type="state_variable$s" id="172">
+                        <field name="name">Movement of G</field>
+                        <field name="value">In movement</field>
+                        <field name="#state">+</field>
+                        <statement name="describes_a:state">
+                          <block type="__link" id="173">
+                            <field name="link_to">State / Movement</field>
+                            <data>state : 170 : 0</data>
+                          </block>
+                        </statement>
+                        <next>
+                          <block type="state_variable$s" id="99">
+                            <field name="name">Led of G</field>
+                            <field name="value">White</field>
+                            <field name="#state">+</field>
+                            <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R03
+                            </requirement>
+                            <data>R03</data>
+                            <statement name="describes_a:state">
+                              <block type="__link" id="100">
+                                <field name="link_to">State / Starting</field>
+                                <data>state : 68 : 0</data>
+                              </block>
+                            </statement>
+                            <next>
+                              <block type="state_variable$s" id="117">
+                                <field name="name">Led of G</field>
+                                <field name="value">Blue</field>
+                                <field name="#state">+</field>
+                                <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R06
+                                </requirement>
+                                <data>R06</data>
+                                <statement name="describes_a:state">
+                                  <block type="__link" id="118">
+                                    <field name="link_to">State / Role</field>
+                                    <data>state : 110 : 0</data>
+                                    <next>
+                                      <block type="__link" id="156">
+                                        <field name="link_to">State / Loyalty</field>
+                                        <data>state : 146 : 0</data>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </statement>
+                                <next>
+                                  <block type="state_variable$s" id="147">
+                                    <field name="name">Led of G</field>
+                                    <field name="value">Yellow</field>
+                                    <field name="#state">+</field>
+                                    <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R10
+                                    </requirement>
+                                    <data>R10</data>
+                                    <statement name="describes_a:state">
+                                      <block type="__link" id="158">
+                                        <field name="link_to">State / Loyalty</field>
+                                        <data>state : 146 : 0</data>
+                                      </block>
+                                    </statement>
+                                    <next>
+                                      <block type="state_variable$s" id="527">
+                                        <field name="name">Led of G</field>
+                                        <field name="value">Green</field>
+                                        <field name="#state">+</field>
+                                        <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R22
+                                        </requirement>
+                                        <data>R22</data>
+                                        <statement name="describes_a:state">
+                                          <block type="__link" id="528">
+                                            <field name="link_to">State / Perform goal</field>
+                                            <data>state : 499 : 0</data>
+                                          </block>
+                                        </statement>
+                                        <next>
+                                          <block type="state_variable$s" id="535">
+                                            <field name="name">Led of G</field>
+                                            <field name="value">Red</field>
+                                            <field name="#state">+</field>
+                                            <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R24
+                                            </requirement>
+                                            <data>R24</data>
+                                            <statement name="describes_a:state">
+                                              <block type="__link" id="536">
+                                                <field name="link_to">State / Perform goal</field>
+                                                <data>state : 499 : 0</data>
+                                              </block>
+                                            </statement>
+                                            <next>
+                                              <block type="state_variable$s" id="113">
+                                                <field name="name">Role of G</field>
+                                                <field name="value">General</field>
+                                                <field name="#state">+</field>
+                                                <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R05
+                                                </requirement>
+                                                <data>R05</data>
+                                                <statement name="describes_a:state">
+                                                  <block type="__link" id="114">
+                                                    <field name="link_to">State / Role</field>
+                                                    <data>state : 110 : 0</data>
+                                                  </block>
+                                                </statement>
+                                                <next>
+                                                  <block type="state_variable$s" id="270">
+                                                    <field name="name">G communicates</field>
+                                                    <field name="value">Send</field>
+                                                    <field name="#state">+</field>
+                                                    <statement name="describes_a:state">
+                                                      <block type="__link" id="266">
+                                                        <field name="link_to">State / Communicating</field>
+                                                        <data>state : 269 : 0</data>
+                                                      </block>
+                                                    </statement>
+                                                    <next>
+                                                      <block type="state_variable$s" id="293">
+                                                        <field name="name">G communicates</field>
+                                                        <field name="value">Receive</field>
+                                                        <field name="#state">+</field>
+                                                        <statement name="describes_a:state">
+                                                          <block type="__link" id="294">
+                                                            <field name="link_to">State / Communicating</field>
+                                                            <data>state : 269 : 0</data>
+                                                          </block>
+                                                        </statement>
+                                                        <next>
+                                                          <block type="state_variable$s" id="500">
+                                                            <field name="name">Perform goal</field>
+                                                            <field name="value">Execute</field>
+                                                            <field name="#state">+</field>
+                                                            <statement name="describes_a:state">
+                                                              <block type="__link" id="501">
+                                                                <field name="link_to">State / Perform goal</field>
+                                                                <data>state : 499 : 0</data>
+                                                              </block>
+                                                            </statement>
+                                                          </block>
+                                                        </next>
+                                                      </block>
+                                                    </next>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+            <statement name="has:dynamicity">
+              <block type="dynamic_service$s" id="109" collapsed="true">
+                <field name="name">Eligibility of "General"</field>
+                <field name="#service">+</field>
+                <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R04
+                </requirement>
+                <data>R04</data>
+                <next>
+                  <block type="dynamic_service$s" id="139" collapsed="true">
+                    <field name="name">Eligibility of "Traitor"</field>
+                    <field name="#service">+</field>
+                    <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R09
+                    </requirement>
+                    <data>R09</data>
+                  </block>
+                </next>
+              </block>
+            </statement>
+            <next>
+              <block type="CS$s" id="39">
+                <field name="cardinality">3</field>
+                <field name="name">Lieutenant_1</field>
+                <field name="system_type">autonomous</field>
+                <field name="#boundary">+</field>
+                <field name="#state_space">+</field>
+                <field name="#HMI">+</field>
+                <field name="#CPS">+</field>
+                <field name="#service">+</field>
+                <field name="#role_player">+</field>
+                <field name="#physical_system">+</field>
+                <field name="#RUI">+</field>
+                <field name="#dependability_guarantee">+</field>
+                <field name="#fault_containment_region">+</field>
+                <field name="#MAPE_algorithm">+</field>
+                <field name="#security">+</field>
+                <field name="#clock">+</field>
+                <field name="#system_resource">+</field>
+                <field name="#architectural_style">+</field>
+                <field name="#subsystem">+</field>
+                <field name="#state_variable">+</field>
+                <field name="#interface">+</field>
+                <field name="#dynamicity">+</field>
+                <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R01
+                </requirement>
+                <data>R01</data>
+                <statement name="has_a:state_space">
+                  <block type="state_space$i" id="75">
+                    <field name="name">State Space of Lieutenant1</field>
+                    <field name="#state">+</field>
+                    <statement name="has:state">
+                      <block type="state$s" id="89">
+                        <field name="name">Starting</field>
+                        <next>
+                          <block type="state$s" id="121">
+                            <field name="name">Role</field>
+                            <next>
+                              <block type="state$s" id="149">
+                                <field name="name">Loyalty</field>
+                                <next>
+                                  <block type="state$s" id="175">
+                                    <field name="name">Movement</field>
+                                    <next>
+                                      <block type="state$s" id="272">
+                                        <field name="name">Communicating</field>
+                                        <next>
+                                          <block type="state$s" id="504">
+                                            <field name="name">Perform goal</field>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                  </block>
+                </statement>
+                <statement name="provides:service">
+                  <block type="service$s" id="386">
+                    <field name="name">L1 auto-elect lieutenant1</field>
+                    <field name="#state_variable">+</field>
+                    <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R07
+                    </requirement>
+                    <data>R07</data>
+                    <statement name="can_access:state_variable">
+                      <block type="__link" id="387">
+                        <field name="link_to">State variable / Role of L1</field>
+                        <data>state_variable : 122 : 0</data>
+                      </block>
+                    </statement>
+                    <next>
+                      <block type="service$s" id="178">
+                        <field name="name">L1 move inside the square</field>
+                        <field name="#state_variable">+</field>
+                        <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R11
+                        </requirement>
+                        <data>R11</data>
+                        <statement name="can_access:state_variable">
+                          <block type="__link" id="179">
+                            <field name="link_to">State variable / Movement of L1</field>
+                            <data>state_variable : 79 : 0</data>
+                          </block>
+                        </statement>
+                        <next>
+                          <block type="service$s" id="200">
+                            <field name="name">L1 move to his place</field>
+                            <field name="#state_variable">+</field>
+                            <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R12
+                            </requirement>
+                            <data>R12</data>
+                            <statement name="can_access:state_variable">
+                              <block type="__link" id="201">
+                                <field name="link_to">State variable / Movement of L1</field>
+                                <data>state_variable : 79 : 0</data>
+                              </block>
+                            </statement>
+                            <next>
+                              <block type="service$s" id="275">
+                                <field name="name">L1 send attack or retreat command</field>
+                                <field name="#state_variable">+</field>
+                                <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R17
+2. R20
+                                </requirement>
+                                <data>R17,R20</data>
+                                <statement name="can_access:state_variable">
+                                  <block type="__link" id="276">
+                                    <field name="link_to">State variable / L1 communicates</field>
+                                    <data>state_variable : 273 : 0</data>
+                                  </block>
+                                </statement>
+                                <next>
+                                  <block type="service$s" id="486">
+                                    <field name="name">L1 receives attack or retreat command</field>
+                                    <field name="#state_variable">+</field>
+                                    <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R18
+                                    </requirement>
+                                    <data>R18</data>
+                                    <statement name="can_access:state_variable">
+                                      <block type="__link" id="488">
+                                        <field name="link_to">State variable / L1 communicates</field>
+                                        <data>state_variable : 478 : 0</data>
+                                      </block>
+                                    </statement>
+                                    <next>
+                                      <block type="service$s" id="507">
+                                        <field name="name">L1 perform goal</field>
+                                        <field name="#state_variable">+</field>
+                                        <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R21
+                                        </requirement>
+                                        <data>R21</data>
+                                        <statement name="can_access:state_variable">
+                                          <block type="__link" id="508">
+                                            <field name="link_to">State variable / Perform goal</field>
+                                            <data>state_variable : 505 : 0</data>
+                                          </block>
+                                        </statement>
+                                        <next>
+                                          <block type="service$s" id="549">
+                                            <field name="name">L1 turns around</field>
+                                            <field name="#state_variable">+</field>
+                                            <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R23
+                                            </requirement>
+                                            <data>R23</data>
+                                            <statement name="can_access:state_variable">
+                                              <block type="__link" id="551">
+                                                <field name="link_to">State variable / Movement of L1</field>
+                                                <data>state_variable : 176 : 0</data>
+                                                <next>
+                                                  <block type="__link" id="552">
+                                                    <field name="link_to">State variable / Perform goal</field>
+                                                    <data>state_variable : 505 : 0</data>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </statement>
+                                            <next>
+                                              <block type="service$s" id="550">
+                                                <field name="name">L1 runs away</field>
+                                                <field name="#state_variable">+</field>
+                                                <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R25
+                                                </requirement>
+                                                <data>R25</data>
+                                                <statement name="can_access:state_variable">
+                                                  <block type="__link" id="553">
+                                                    <field name="link_to">State variable / Movement of L1</field>
+                                                    <data>state_variable : 176 : 0</data>
+                                                    <next>
+                                                      <block type="__link" id="554">
+                                                        <field name="link_to">State variable / Perform goal</field>
+                                                        <data>state_variable : 505 : 0</data>
+                                                      </block>
+                                                    </next>
+                                                  </block>
+                                                </statement>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+                <statement name="has:RUI">
+                  <block type="RUMI$s" id="242">
+                    <field name="name">Lieutenant1_interface</field>
+                    <field name="has_connection">FALSE</field>
+                    <field name="#connecting_strategy">+</field>
+                    <field name="#interface_specification">+</field>
+                    <field name="#interface_port">+</field>
+                    <field name="#afferent_environment">+</field>
+                    <field name="#efferent_environment">+</field>
+                    <field name="#interface_model">+</field>
+                    <field name="#service">+</field>
+                    <field name="#message">+</field>
+                    <field name="#RUMI">+</field>
+                    <field name="#probe">+</field>
+                    <field name="#security">+</field>
+                    <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R16
+                    </requirement>
+                    <data>R16</data>
+                    <statement name="connects:RUMI">
+                      <block type="__link" id="253">
+                        <field name="link_to">RUMI / OCH_interface</field>
+                        <data>RUMI : 235 : 0</data>
+                        <next>
+                          <block type="__link" id="254">
+                            <field name="link_to">RUMI / General_interface</field>
+                            <data>RUMI : 241 : 0</data>
+                            <next>
+                              <block type="__link" id="255">
+                                <field name="link_to">RUMI / Lieutenant2_interface</field>
+                                <data>RUMI : 243 : 0</data>
+                                <next>
+                                  <block type="__link" id="256">
+                                    <field name="link_to">RUMI / Lieutenant3_interface</field>
+                                    <data>RUMI : 244 : 0</data>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                  </block>
+                </statement>
+                <statement name="has:state_variable">
+                  <block type="state_variable$s" id="193">
+                    <field name="name">L1 id</field>
+                    <field name="value">Lowest uid between non general</field>
+                    <field name="#state">+</field>
+                    <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. S1
+                    </requirement>
+                    <data>S1</data>
+                    <next>
+                      <block type="state_variable$s" id="79">
+                        <field name="name">Movement of L1</field>
+                        <field name="value">Stationary</field>
+                        <field name="#state">+</field>
+                        <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R02
+                        </requirement>
+                        <data>R02</data>
+                        <statement name="describes_a:state">
+                          <block type="__link" id="90">
+                            <field name="link_to">State / Starting</field>
+                            <data>state : 89 : 0</data>
+                          </block>
+                        </statement>
+                        <next>
+                          <block type="state_variable$s" id="176">
+                            <field name="name">Movement of L1</field>
+                            <field name="value">In movement</field>
+                            <field name="#state">+</field>
+                            <statement name="describes_a:state">
+                              <block type="__link" id="177">
+                                <field name="link_to">State / Movement</field>
+                                <data>state : 175 : 0</data>
+                              </block>
+                            </statement>
+                            <next>
+                              <block type="state_variable$s" id="214">
+                                <field name="name">Round of movement</field>
+                                <field name="value">2</field>
+                                <field name="#state">+</field>
+                                <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R14
+                                </requirement>
+                                <data>R14</data>
+                                <statement name="describes_a:state">
+                                  <block type="__link" id="215">
+                                    <field name="link_to">State / Movement</field>
+                                    <data>state : 175 : 0</data>
+                                  </block>
+                                </statement>
+                                <next>
+                                  <block type="state_variable$s" id="101">
+                                    <field name="name">Led of L1</field>
+                                    <field name="value">White</field>
+                                    <field name="#state">+</field>
+                                    <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R03
+2. R08
+                                    </requirement>
+                                    <data>R03,R08</data>
+                                    <statement name="describes_a:state">
+                                      <block type="__link" id="102">
+                                        <field name="link_to">State / Starting</field>
+                                        <data>state : 89 : 0</data>
+                                        <next>
+                                          <block type="__link" id="134">
+                                            <field name="link_to">State / Role</field>
+                                            <data>state : 121 : 0</data>
+                                            <next>
+                                              <block type="__link" id="157">
+                                                <field name="link_to">State / Loyalty</field>
+                                                <data>state : 149 : 0</data>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </statement>
+                                    <next>
+                                      <block type="state_variable$s" id="151">
+                                        <field name="name">Led of L1</field>
+                                        <field name="value">Yellow</field>
+                                        <field name="#state">+</field>
+                                        <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R10
+                                        </requirement>
+                                        <data>R10</data>
+                                        <statement name="describes_a:state">
+                                          <block type="__link" id="159">
+                                            <field name="link_to">State / Loyalty</field>
+                                            <data>state : 149 : 0</data>
+                                          </block>
+                                        </statement>
+                                        <next>
+                                          <block type="state_variable$s" id="529">
+                                            <field name="name">Led of L1</field>
+                                            <field name="value">Green</field>
+                                            <field name="#state">+</field>
+                                            <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R22
+                                            </requirement>
+                                            <data>R22</data>
+                                            <statement name="describes_a:state">
+                                              <block type="__link" id="530">
+                                                <field name="link_to">State / Perform goal</field>
+                                                <data>state : 504 : 0</data>
+                                              </block>
+                                            </statement>
+                                            <next>
+                                              <block type="state_variable$s" id="537">
+                                                <field name="name">Led of L1</field>
+                                                <field name="value">Red</field>
+                                                <field name="#state">+</field>
+                                                <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R24
+                                                </requirement>
+                                                <data>R24</data>
+                                                <statement name="describes_a:state">
+                                                  <block type="__link" id="538">
+                                                    <field name="link_to">State / Perform goal</field>
+                                                    <data>state : 504 : 0</data>
+                                                  </block>
+                                                </statement>
+                                                <next>
+                                                  <block type="state_variable$s" id="122">
+                                                    <field name="name">Role of L1</field>
+                                                    <field name="value">Lieutenants1</field>
+                                                    <field name="#state">+</field>
+                                                    <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R07
+                                                    </requirement>
+                                                    <data>R07</data>
+                                                    <statement name="describes_a:state">
+                                                      <block type="__link" id="123">
+                                                        <field name="link_to">State / Role</field>
+                                                        <data>state : 121 : 0</data>
+                                                      </block>
+                                                    </statement>
+                                                    <next>
+                                                      <block type="state_variable$s" id="273">
+                                                        <field name="name">L1 communicates</field>
+                                                        <field name="value">Send</field>
+                                                        <field name="#state">+</field>
+                                                        <statement name="describes_a:state">
+                                                          <block type="__link" id="274">
+                                                            <field name="link_to">State / Communicating</field>
+                                                            <data>state : 272 : 0</data>
+                                                          </block>
+                                                        </statement>
+                                                        <next>
+                                                          <block type="state_variable$s" id="478">
+                                                            <field name="name">L1 communicates</field>
+                                                            <field name="value">Receive</field>
+                                                            <field name="#state">+</field>
+                                                            <statement name="describes_a:state">
+                                                              <block type="__link" id="479">
+                                                                <field name="link_to">State / Communicating</field>
+                                                                <data>state : 272 : 0</data>
+                                                              </block>
+                                                            </statement>
+                                                            <next>
+                                                              <block type="state_variable$s" id="505">
+                                                                <field name="name">Perform goal</field>
+                                                                <field name="value">Execute</field>
+                                                                <field name="#state">+</field>
+                                                                <statement name="describes_a:state">
+                                                                  <block type="__link" id="506">
+                                                                    <field name="link_to">State / Perform goal</field>
+                                                                    <data>state : 504 : 0</data>
+                                                                  </block>
+                                                                </statement>
+                                                              </block>
+                                                            </next>
+                                                          </block>
+                                                        </next>
+                                                      </block>
+                                                    </next>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+                <statement name="has:dynamicity">
+                  <block type="dynamic_service$s" id="140" collapsed="true">
+                    <field name="name">Eligibility of "Traitor"</field>
+                    <field name="#service">+</field>
+                    <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R09
+                    </requirement>
+                    <data>R09</data>
+                  </block>
+                </statement>
+                <next>
+                  <block type="CS$s" id="41">
+                    <field name="cardinality">4</field>
+                    <field name="name">Lieutenant_2</field>
+                    <field name="system_type">autonomous</field>
+                    <field name="#boundary">+</field>
+                    <field name="#state_space">+</field>
+                    <field name="#HMI">+</field>
+                    <field name="#CPS">+</field>
+                    <field name="#service">+</field>
+                    <field name="#role_player">+</field>
+                    <field name="#physical_system">+</field>
+                    <field name="#RUI">+</field>
+                    <field name="#dependability_guarantee">+</field>
+                    <field name="#fault_containment_region">+</field>
+                    <field name="#MAPE_algorithm">+</field>
+                    <field name="#security">+</field>
+                    <field name="#clock">+</field>
+                    <field name="#system_resource">+</field>
+                    <field name="#architectural_style">+</field>
+                    <field name="#subsystem">+</field>
+                    <field name="#state_variable">+</field>
+                    <field name="#interface">+</field>
+                    <field name="#dynamicity">+</field>
+                    <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R01
+                    </requirement>
+                    <data>R01</data>
+                    <statement name="has_a:state_space">
+                      <block type="state_space$i" id="83">
+                        <field name="name">State Space of Lieutenant2</field>
+                        <field name="#state">+</field>
+                        <statement name="has:state">
+                          <block type="state$s" id="91">
+                            <field name="name">Starting</field>
+                            <next>
+                              <block type="state$s" id="126">
+                                <field name="name">Role</field>
+                                <next>
+                                  <block type="state$s" id="153">
+                                    <field name="name">Loyalty</field>
+                                    <next>
+                                      <block type="state$s" id="181">
+                                        <field name="name">Movement</field>
+                                        <next>
+                                          <block type="state$s" id="278">
+                                            <field name="name">Communicating</field>
+                                            <next>
+                                              <block type="state$s" id="509">
+                                                <field name="name">Perform goal</field>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </statement>
+                      </block>
+                    </statement>
+                    <statement name="provides:service">
+                      <block type="service$s" id="388">
+                        <field name="name">L2 auto-elect lieutenant2</field>
+                        <field name="#state_variable">+</field>
+                        <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R07
+                        </requirement>
+                        <data>R07</data>
+                        <statement name="can_access:state_variable">
+                          <block type="__link" id="389">
+                            <field name="link_to">State variable / Role of L2</field>
+                            <data>state_variable : 124 : 0</data>
+                          </block>
+                        </statement>
+                        <next>
+                          <block type="service$s" id="184">
+                            <field name="name">L2 move inside the square</field>
+                            <field name="#state_variable">+</field>
+                            <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R11
+                            </requirement>
+                            <data>R11</data>
+                            <statement name="can_access:state_variable">
+                              <block type="__link" id="185">
+                                <field name="link_to">State variable / Movement of L2</field>
+                                <data>state_variable : 87 : 0</data>
+                              </block>
+                            </statement>
+                            <next>
+                              <block type="service$s" id="202">
+                                <field name="name">L2 move to his place</field>
+                                <field name="#state_variable">+</field>
+                                <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R12
+                                </requirement>
+                                <data>R12</data>
+                                <statement name="can_access:state_variable">
+                                  <block type="__link" id="203">
+                                    <field name="link_to">State variable / Movement of L2</field>
+                                    <data>state_variable : 87 : 0</data>
+                                  </block>
+                                </statement>
+                                <next>
+                                  <block type="service$s" id="281">
+                                    <field name="name">L2 send attack or retreat command</field>
+                                    <field name="#state_variable">+</field>
+                                    <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R17
+2. R20
+                                    </requirement>
+                                    <data>R17,R20</data>
+                                    <statement name="can_access:state_variable">
+                                      <block type="__link" id="282">
+                                        <field name="link_to">State variable / L2 communicates</field>
+                                        <data>state_variable : 279 : 0</data>
+                                      </block>
+                                    </statement>
+                                    <next>
+                                      <block type="service$s" id="484">
+                                        <field name="name">L2 receives attack or retreat command</field>
+                                        <field name="#state_variable">+</field>
+                                        <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R18
+                                        </requirement>
+                                        <data>R18</data>
+                                        <statement name="can_access:state_variable">
+                                          <block type="__link" id="485">
+                                            <field name="link_to">State variable / L2 communicates</field>
+                                            <data>state_variable : 482 : 0</data>
+                                          </block>
+                                        </statement>
+                                        <next>
+                                          <block type="service$s" id="512">
+                                            <field name="name">L2 perform goal</field>
+                                            <field name="#state_variable">+</field>
+                                            <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R21
+                                            </requirement>
+                                            <data>R21</data>
+                                            <statement name="can_access:state_variable">
+                                              <block type="__link" id="513">
+                                                <field name="link_to">State variable / Perform goal</field>
+                                                <data>state_variable : 510 : 0</data>
+                                              </block>
+                                            </statement>
+                                            <next>
+                                              <block type="service$s" id="555">
+                                                <field name="name">L2 turns around</field>
+                                                <field name="#state_variable">+</field>
+                                                <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R23
+                                                </requirement>
+                                                <data>R23</data>
+                                                <statement name="can_access:state_variable">
+                                                  <block type="__link" id="558">
+                                                    <field name="link_to">State variable / Movement of L2</field>
+                                                    <data>state_variable : 182 : 0</data>
+                                                    <next>
+                                                      <block type="__link" id="560">
+                                                        <field name="link_to">State variable / Perform goal</field>
+                                                        <data>state_variable : 510 : 0</data>
+                                                      </block>
+                                                    </next>
+                                                  </block>
+                                                </statement>
+                                                <next>
+                                                  <block type="service$s" id="557">
+                                                    <field name="name">L2 runs away</field>
+                                                    <field name="#state_variable">+</field>
+                                                    <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R25
+                                                    </requirement>
+                                                    <data>R25</data>
+                                                    <statement name="can_access:state_variable">
+                                                      <block type="__link" id="559">
+                                                        <field name="link_to">State variable / Movement of L2</field>
+                                                        <data>state_variable : 182 : 0</data>
+                                                        <next>
+                                                          <block type="__link" id="561">
+                                                            <field name="link_to">State variable / Perform goal</field>
+                                                            <data>state_variable : 510 : 0</data>
+                                                          </block>
+                                                        </next>
+                                                      </block>
+                                                    </statement>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <statement name="has:RUI">
+                      <block type="RUMI$s" id="243">
+                        <field name="name">Lieutenant2_interface</field>
+                        <field name="has_connection">FALSE</field>
+                        <field name="#connecting_strategy">+</field>
+                        <field name="#interface_specification">+</field>
+                        <field name="#interface_port">+</field>
+                        <field name="#afferent_environment">+</field>
+                        <field name="#efferent_environment">+</field>
+                        <field name="#interface_model">+</field>
+                        <field name="#service">+</field>
+                        <field name="#message">+</field>
+                        <field name="#RUMI">+</field>
+                        <field name="#probe">+</field>
+                        <field name="#security">+</field>
+                        <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R16
+                        </requirement>
+                        <data>R16</data>
+                        <statement name="connects:RUMI">
+                          <block type="__link" id="249">
+                            <field name="link_to">RUMI / OCH_interface</field>
+                            <data>RUMI : 235 : 0</data>
+                            <next>
+                              <block type="__link" id="250">
+                                <field name="link_to">RUMI / General_interface</field>
+                                <data>RUMI : 241 : 0</data>
+                                <next>
+                                  <block type="__link" id="251">
+                                    <field name="link_to">RUMI / Lieutenant1_interface</field>
+                                    <data>RUMI : 242 : 0</data>
+                                    <next>
+                                      <block type="__link" id="252">
+                                        <field name="link_to">RUMI / Lieutenant3_interface</field>
+                                        <data>RUMI : 244 : 0</data>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </statement>
+                      </block>
+                    </statement>
+                    <statement name="has:state_variable">
+                      <block type="state_variable$s" id="194">
+                        <field name="name">L2 id</field>
+                        <field name="value">Second lowest uid between non general</field>
+                        <field name="#state">+</field>
+                        <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. S1
+                        </requirement>
+                        <data>S1</data>
+                        <next>
+                          <block type="state_variable$s" id="87">
+                            <field name="name">Movement of L2</field>
+                            <field name="value">Stationary</field>
+                            <field name="#state">+</field>
+                            <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R02
+                            </requirement>
+                            <data>R02</data>
+                            <statement name="describes_a:state">
+                              <block type="__link" id="92">
+                                <field name="link_to">State / Starting</field>
+                                <data>state : 91 : 0</data>
+                              </block>
+                            </statement>
+                            <next>
+                              <block type="state_variable$s" id="182">
+                                <field name="name">Movement of L2</field>
+                                <field name="value">In movement</field>
+                                <field name="#state">+</field>
+                                <statement name="describes_a:state">
+                                  <block type="__link" id="183">
+                                    <field name="link_to">State / Movement</field>
+                                    <data>state : 181 : 0</data>
+                                  </block>
+                                </statement>
+                                <next>
+                                  <block type="state_variable$s" id="216">
+                                    <field name="name">Round of movement</field>
+                                    <field name="value">3</field>
+                                    <field name="#state">+</field>
+                                    <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R14
+                                    </requirement>
+                                    <data>R14</data>
+                                    <statement name="describes_a:state">
+                                      <block type="__link" id="217">
+                                        <field name="link_to">State / Movement</field>
+                                        <data>state : 181 : 0</data>
+                                      </block>
+                                    </statement>
+                                    <next>
+                                      <block type="state_variable$s" id="103">
+                                        <field name="name">Led of L2</field>
+                                        <field name="value">White</field>
+                                        <field name="#state">+</field>
+                                        <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R03
+2. R08
+                                        </requirement>
+                                        <data>R03,R08</data>
+                                        <statement name="describes_a:state">
+                                          <block type="__link" id="104">
+                                            <field name="link_to">State / Starting</field>
+                                            <data>state : 91 : 0</data>
+                                            <next>
+                                              <block type="__link" id="135">
+                                                <field name="link_to">State / Role</field>
+                                                <data>state : 126 : 0</data>
+                                                <next>
+                                                  <block type="__link" id="160">
+                                                    <field name="link_to">State / Loyalty</field>
+                                                    <data>state : 153 : 0</data>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </statement>
+                                        <next>
+                                          <block type="state_variable$s" id="161">
+                                            <field name="name">Led of L2</field>
+                                            <field name="value">Yellow</field>
+                                            <field name="#state">+</field>
+                                            <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R10
+                                            </requirement>
+                                            <data>R10</data>
+                                            <statement name="describes_a:state">
+                                              <block type="__link" id="162">
+                                                <field name="link_to">State / Loyalty</field>
+                                                <data>state : 153 : 0</data>
+                                              </block>
+                                            </statement>
+                                            <next>
+                                              <block type="state_variable$s" id="531">
+                                                <field name="name">Led of L2</field>
+                                                <field name="value">Green</field>
+                                                <field name="#state">+</field>
+                                                <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R22
+                                                </requirement>
+                                                <data>R22</data>
+                                                <statement name="describes_a:state">
+                                                  <block type="__link" id="532">
+                                                    <field name="link_to">State / Perform goal</field>
+                                                    <data>state : 509 : 0</data>
+                                                  </block>
+                                                </statement>
+                                                <next>
+                                                  <block type="state_variable$s" id="539">
+                                                    <field name="name">Led of L2</field>
+                                                    <field name="value">Red</field>
+                                                    <field name="#state">+</field>
+                                                    <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R24
+                                                    </requirement>
+                                                    <data>R24</data>
+                                                    <statement name="describes_a:state">
+                                                      <block type="__link" id="540">
+                                                        <field name="link_to">State / Perform goal</field>
+                                                        <data>state : 509 : 0</data>
+                                                      </block>
+                                                    </statement>
+                                                    <next>
+                                                      <block type="state_variable$s" id="124">
+                                                        <field name="name">Role of L2</field>
+                                                        <field name="value">Lieutenants2</field>
+                                                        <field name="#state">+</field>
+                                                        <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R07
+                                                        </requirement>
+                                                        <data>R07</data>
+                                                        <statement name="describes_a:state">
+                                                          <block type="__link" id="127">
+                                                            <field name="link_to">State / Role</field>
+                                                            <data>state : 126 : 0</data>
+                                                          </block>
+                                                        </statement>
+                                                        <next>
+                                                          <block type="state_variable$s" id="279">
+                                                            <field name="name">L2 communicates</field>
+                                                            <field name="value">Send</field>
+                                                            <field name="#state">+</field>
+                                                            <statement name="describes_a:state">
+                                                              <block type="__link" id="280">
+                                                                <field name="link_to">State / Communicating</field>
+                                                                <data>state : 278 : 0</data>
+                                                              </block>
+                                                            </statement>
+                                                            <next>
+                                                              <block type="state_variable$s" id="482">
+                                                                <field name="name">L2 communicates</field>
+                                                                <field name="value">Receive</field>
+                                                                <field name="#state">+</field>
+                                                                <statement name="describes_a:state">
+                                                                  <block type="__link" id="483">
+                                                                    <field name="link_to">State / Communicating</field>
+                                                                    <data>state : 283 : 0</data>
+                                                                  </block>
+                                                                </statement>
+                                                                <next>
+                                                                  <block type="state_variable$s" id="510">
+                                                                    <field name="name">Perform goal</field>
+                                                                    <field name="value">Execute</field>
+                                                                    <field name="#state">+</field>
+                                                                    <statement name="describes_a:state">
+                                                                      <block type="__link" id="511">
+                                                                        <field name="link_to">State / Perform goal</field>
+                                                                        <data>state : 509 : 0</data>
+                                                                      </block>
+                                                                    </statement>
+                                                                  </block>
+                                                                </next>
+                                                              </block>
+                                                            </next>
+                                                          </block>
+                                                        </next>
+                                                      </block>
+                                                    </next>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <statement name="has:dynamicity">
+                      <block type="dynamic_service$s" id="141" collapsed="true">
+                        <field name="name">Eligibility of "Traitor"</field>
+                        <field name="#service">+</field>
+                        <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R09
+                        </requirement>
+                        <data>R09</data>
+                      </block>
+                    </statement>
+                    <next>
+                      <block type="CS$s" id="43">
+                        <field name="cardinality">5</field>
+                        <field name="name">Lieutenant_3</field>
+                        <field name="system_type">autonomous</field>
+                        <field name="#boundary">+</field>
+                        <field name="#state_space">+</field>
+                        <field name="#HMI">+</field>
+                        <field name="#CPS">+</field>
+                        <field name="#service">+</field>
+                        <field name="#role_player">+</field>
+                        <field name="#physical_system">+</field>
+                        <field name="#RUI">+</field>
+                        <field name="#dependability_guarantee">+</field>
+                        <field name="#fault_containment_region">+</field>
+                        <field name="#MAPE_algorithm">+</field>
+                        <field name="#security">+</field>
+                        <field name="#clock">+</field>
+                        <field name="#system_resource">+</field>
+                        <field name="#architectural_style">+</field>
+                        <field name="#subsystem">+</field>
+                        <field name="#state_variable">+</field>
+                        <field name="#interface">+</field>
+                        <field name="#dynamicity">+</field>
+                        <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R01
+                        </requirement>
+                        <data>R01</data>
+                        <statement name="has_a:state_space">
+                          <block type="state_space$i" id="93">
+                            <field name="name">State Space of Lieutenant3</field>
+                            <field name="#state">+</field>
+                            <statement name="has:state">
+                              <block type="state$s" id="94">
+                                <field name="name">Starting</field>
+                                <next>
+                                  <block type="state$s" id="128">
+                                    <field name="name">Role</field>
+                                    <next>
+                                      <block type="state$s" id="163">
+                                        <field name="name">Loyalty</field>
+                                        <next>
+                                          <block type="state$s" id="186">
+                                            <field name="name">Movement</field>
+                                            <next>
+                                              <block type="state$s" id="283">
+                                                <field name="name">Communicating</field>
+                                                <next>
+                                                  <block type="state$s" id="514">
+                                                    <field name="name">Perform goal</field>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </statement>
+                          </block>
+                        </statement>
+                        <statement name="provides:service">
+                          <block type="service$s" id="390">
+                            <field name="name">L3 auto-elect lieutenant3</field>
+                            <field name="#state_variable">+</field>
+                            <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R07
+                            </requirement>
+                            <statement name="can_access:state_variable">
+                              <block type="__link" id="391">
+                                <field name="link_to">State variable / Role of L3</field>
+                                <data>state_variable : 129 : 0</data>
+                              </block>
+                            </statement>
+                            <next>
+                              <block type="service$s" id="189">
+                                <field name="name">L3 move inside the square</field>
+                                <field name="#state_variable">+</field>
+                                <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R11
+                                </requirement>
+                                <data>R11</data>
+                                <statement name="can_access:state_variable">
+                                  <block type="__link" id="190">
+                                    <field name="link_to">State variable / Movement of L3</field>
+                                    <data>state_variable : 95 : 0</data>
+                                  </block>
+                                </statement>
+                                <next>
+                                  <block type="service$s" id="204">
+                                    <field name="name">L3 move to his place</field>
+                                    <field name="#state_variable">+</field>
+                                    <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R12
+                                    </requirement>
+                                    <data>R12</data>
+                                    <statement name="can_access:state_variable">
+                                      <block type="__link" id="205">
+                                        <field name="link_to">State variable / Movement of L3</field>
+                                        <data>state_variable : 95 : 0</data>
+                                      </block>
+                                    </statement>
+                                    <next>
+                                      <block type="service$s" id="286">
+                                        <field name="name">L3 send attack or retreat command</field>
+                                        <field name="#state_variable">+</field>
+                                        <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R17
+2. R20
+                                        </requirement>
+                                        <data>R17,R20</data>
+                                        <statement name="can_access:state_variable">
+                                          <block type="__link" id="287">
+                                            <field name="link_to">State variable / L3 communicates</field>
+                                            <data>state_variable : 284 : 0</data>
+                                          </block>
+                                        </statement>
+                                        <next>
+                                          <block type="service$s" id="491">
+                                            <field name="name">L3 receives attack or retreat command</field>
+                                            <field name="#state_variable">+</field>
+                                            <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R18
+                                            </requirement>
+                                            <data>R18</data>
+                                            <statement name="can_access:state_variable">
+                                              <block type="__link" id="492">
+                                                <field name="link_to">State variable / L3 communicates</field>
+                                                <data>state_variable : 489 : 0</data>
+                                              </block>
+                                            </statement>
+                                            <next>
+                                              <block type="service$s" id="517">
+                                                <field name="name">L3 perform goal</field>
+                                                <field name="#state_variable">+</field>
+                                                <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R21
+                                                </requirement>
+                                                <data>R21</data>
+                                                <statement name="can_access:state_variable">
+                                                  <block type="__link" id="518">
+                                                    <field name="link_to">State variable / Perform goal</field>
+                                                    <data>state_variable : 515 : 0</data>
+                                                  </block>
+                                                </statement>
+                                                <next>
+                                                  <block type="service$s" id="562">
+                                                    <field name="name">L3 turns around</field>
+                                                    <field name="#state_variable">+</field>
+                                                    <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R23
+                                                    </requirement>
+                                                    <statement name="can_access:state_variable">
+                                                      <block type="__link" id="564">
+                                                        <field name="link_to">State variable / Movement of L3</field>
+                                                        <data>state_variable : 187 : 0</data>
+                                                        <next>
+                                                          <block type="__link" id="565">
+                                                            <field name="link_to">State variable / Perform goal</field>
+                                                            <data>state_variable : 515 : 0</data>
+                                                          </block>
+                                                        </next>
+                                                      </block>
+                                                    </statement>
+                                                    <next>
+                                                      <block type="service$s" id="563">
+                                                        <field name="name">L3 runs away</field>
+                                                        <field name="#state_variable">+</field>
+                                                        <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R25
+                                                        </requirement>
+                                                        <statement name="can_access:state_variable">
+                                                          <block type="__link" id="566">
+                                                            <field name="link_to">State variable / Movement of L3</field>
+                                                            <data>state_variable : 187 : 0</data>
+                                                            <next>
+                                                              <block type="__link" id="567">
+                                                                <field name="link_to">State variable / Perform goal</field>
+                                                                <data>state_variable : 515 : 0</data>
+                                                              </block>
+                                                            </next>
+                                                          </block>
+                                                        </statement>
+                                                      </block>
+                                                    </next>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </statement>
+                        <statement name="has:RUI">
+                          <block type="RUMI$s" id="244">
+                            <field name="name">Lieutenant3_interface</field>
+                            <field name="has_connection">FALSE</field>
+                            <field name="#connecting_strategy">+</field>
+                            <field name="#interface_specification">+</field>
+                            <field name="#interface_port">+</field>
+                            <field name="#afferent_environment">+</field>
+                            <field name="#efferent_environment">+</field>
+                            <field name="#interface_model">+</field>
+                            <field name="#service">+</field>
+                            <field name="#message">+</field>
+                            <field name="#RUMI">+</field>
+                            <field name="#probe">+</field>
+                            <field name="#security">+</field>
+                            <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R16
+                            </requirement>
+                            <data>R16</data>
+                            <statement name="connects:RUMI">
+                              <block type="__link" id="245">
+                                <field name="link_to">RUMI / OCH_interface</field>
+                                <data>RUMI : 235 : 0</data>
+                                <next>
+                                  <block type="__link" id="246">
+                                    <field name="link_to">RUMI / General_interface</field>
+                                    <data>RUMI : 241 : 0</data>
+                                    <next>
+                                      <block type="__link" id="247">
+                                        <field name="link_to">RUMI / Lieutenant1_interface</field>
+                                        <data>RUMI : 242 : 0</data>
+                                        <next>
+                                          <block type="__link" id="248">
+                                            <field name="link_to">RUMI / Lieutenant2_interface</field>
+                                            <data>RUMI : 243 : 0</data>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </statement>
+                          </block>
+                        </statement>
+                        <statement name="has:state_variable">
+                          <block type="state_variable$s" id="195">
+                            <field name="name">L3 id</field>
+                            <field name="value">Highest uid between non general</field>
+                            <field name="#state">+</field>
+                            <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. S1
+                            </requirement>
+                            <data>S1</data>
+                            <next>
+                              <block type="state_variable$s" id="95">
+                                <field name="name">Movement of L3</field>
+                                <field name="value">Stationary</field>
+                                <field name="#state">+</field>
+                                <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R02
+                                </requirement>
+                                <data>R02</data>
+                                <statement name="describes_a:state">
+                                  <block type="__link" id="96">
+                                    <field name="link_to">State / Starting</field>
+                                    <data>state : 94 : 0</data>
+                                  </block>
+                                </statement>
+                                <next>
+                                  <block type="state_variable$s" id="187">
+                                    <field name="name">Movement of L3</field>
+                                    <field name="value">In movement</field>
+                                    <field name="#state">+</field>
+                                    <statement name="describes_a:state">
+                                      <block type="__link" id="188">
+                                        <field name="link_to">State / Movement</field>
+                                        <data>state : 186 : 0</data>
+                                      </block>
+                                    </statement>
+                                    <next>
+                                      <block type="state_variable$s" id="218">
+                                        <field name="name">Round of movement</field>
+                                        <field name="value">4</field>
+                                        <field name="#state">+</field>
+                                        <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R14
+                                        </requirement>
+                                        <data>R14</data>
+                                        <statement name="describes_a:state">
+                                          <block type="__link" id="219">
+                                            <field name="link_to">State / Movement</field>
+                                            <data>state : 186 : 0</data>
+                                          </block>
+                                        </statement>
+                                        <next>
+                                          <block type="state_variable$s" id="105">
+                                            <field name="name">Led of L3</field>
+                                            <field name="value">White</field>
+                                            <field name="#state">+</field>
+                                            <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R03
+2. R08
+                                            </requirement>
+                                            <data>R03,R08</data>
+                                            <statement name="describes_a:state">
+                                              <block type="__link" id="106">
+                                                <field name="link_to">State / Starting</field>
+                                                <data>state : 94 : 0</data>
+                                                <next>
+                                                  <block type="__link" id="136">
+                                                    <field name="link_to">State / Role</field>
+                                                    <data>state : 128 : 0</data>
+                                                    <next>
+                                                      <block type="__link" id="164">
+                                                        <field name="link_to">State / Loyalty</field>
+                                                        <data>state : 163 : 0</data>
+                                                      </block>
+                                                    </next>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </statement>
+                                            <next>
+                                              <block type="state_variable$s" id="165">
+                                                <field name="name">Led of L3</field>
+                                                <field name="value">Yellow</field>
+                                                <field name="#state">+</field>
+                                                <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R10
+                                                </requirement>
+                                                <data>R10</data>
+                                                <statement name="describes_a:state">
+                                                  <block type="__link" id="166">
+                                                    <field name="link_to">State / Loyalty</field>
+                                                    <data>state : 163 : 0</data>
+                                                  </block>
+                                                </statement>
+                                                <next>
+                                                  <block type="state_variable$s" id="533">
+                                                    <field name="name">Led of L3</field>
+                                                    <field name="value">Green</field>
+                                                    <field name="#state">+</field>
+                                                    <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R22
+                                                    </requirement>
+                                                    <data>R22</data>
+                                                    <statement name="describes_a:state">
+                                                      <block type="__link" id="534">
+                                                        <field name="link_to">State / Perform goal</field>
+                                                        <data>state : 514 : 0</data>
+                                                      </block>
+                                                    </statement>
+                                                    <next>
+                                                      <block type="state_variable$s" id="541">
+                                                        <field name="name">Led of L3</field>
+                                                        <field name="value">Red</field>
+                                                        <field name="#state">+</field>
+                                                        <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R24
+                                                        </requirement>
+                                                        <data>R24</data>
+                                                        <statement name="describes_a:state">
+                                                          <block type="__link" id="542">
+                                                            <field name="link_to">State / Perform goal</field>
+                                                            <data>state : 514 : 0</data>
+                                                          </block>
+                                                        </statement>
+                                                        <next>
+                                                          <block type="state_variable$s" id="129">
+                                                            <field name="name">Role of L3</field>
+                                                            <field name="value">Lieutenants3</field>
+                                                            <field name="#state">+</field>
+                                                            <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R07
+                                                            </requirement>
+                                                            <data>R07</data>
+                                                            <statement name="describes_a:state">
+                                                              <block type="__link" id="130">
+                                                                <field name="link_to">State / Role</field>
+                                                                <data>state : 128 : 0</data>
+                                                              </block>
+                                                            </statement>
+                                                            <next>
+                                                              <block type="state_variable$s" id="284">
+                                                                <field name="name">L3 communicates</field>
+                                                                <field name="value">Send</field>
+                                                                <field name="#state">+</field>
+                                                                <statement name="describes_a:state">
+                                                                  <block type="__link" id="285">
+                                                                    <field name="link_to">State / Communicating</field>
+                                                                    <data>state : 283 : 0</data>
+                                                                  </block>
+                                                                </statement>
+                                                                <next>
+                                                                  <block type="state_variable$s" id="489">
+                                                                    <field name="name">L3 communicates</field>
+                                                                    <field name="value">Receive</field>
+                                                                    <field name="#state">+</field>
+                                                                    <statement name="describes_a:state">
+                                                                      <block type="__link" id="490">
+                                                                        <field name="link_to">State / Communicating</field>
+                                                                        <data>state : 283 : 0</data>
+                                                                      </block>
+                                                                    </statement>
+                                                                    <next>
+                                                                      <block type="state_variable$s" id="515">
+                                                                        <field name="name">Perform goal</field>
+                                                                        <field name="value">Execute</field>
+                                                                        <field name="#state">+</field>
+                                                                        <statement name="describes_a:state">
+                                                                          <block type="__link" id="516">
+                                                                            <field name="link_to">State / Perform goal</field>
+                                                                            <data>state : 514 : 0</data>
+                                                                          </block>
+                                                                        </statement>
+                                                                      </block>
+                                                                    </next>
+                                                                  </block>
+                                                                </next>
+                                                              </block>
+                                                            </next>
+                                                          </block>
+                                                        </next>
+                                                      </block>
+                                                    </next>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </statement>
+                        <statement name="has:dynamicity">
+                          <block type="dynamic_service$s" id="142" collapsed="true">
+                            <field name="name">Eligibility of "Traitor"</field>
+                            <field name="#service">+</field>
+                            <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. R09
+                            </requirement>
+                            <data>R09</data>
+                          </block>
+                        </statement>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>
