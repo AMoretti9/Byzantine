@@ -126,7 +126,7 @@ void setup()
 {
 	
 	message.type=NORMAL; //TX
-	message.data[0] = NULL; //TX - (contenuto del messaggio)
+	message.data[0] = NULL; message.data[1] = NULL; message.data[2] = NULL; message.data[3]=NULL; //TX - (contenuto dei messaggi)
 	message.crc=message_crc(&message); //TX
 	
 	random_general=0;
@@ -166,113 +166,231 @@ void loop() {   //32 ticks = 1 sec
 		}
 	}
 	
-	if(kilo_ticks>192 && kilo_ticks<210){
+	if(kilo_ticks>192 && kilo_ticks<200){
 		if(random_command==0){
 			createGeneralCommands(general, traitor); // here the general creates the command to forward
 		}
 	}
-	
+	if(kilo_ticks>200 && kilo_ticks<216){
+		
+		message.data[1] = G_commands[1];
+		message.data[2] = G_commands[2];
+		message.data[3] = G_commands[3];
+		
+	}
 	
 	//=================================== MOVEMENT OF 1
-	if(kilo_ticks>210 && kilo_ticks<246 ){   //+36
+	if(kilo_ticks>210 && kilo_ticks<252 ){   //+42
 		if(kilo_uid==time_to_move[0]){
 			set_motion(RIGHT);
 		}
 	}
-	if(kilo_ticks>246 && kilo_ticks<330 ){ //+84
+	if(kilo_ticks>252 && kilo_ticks<341 ){  //+89
 		if(kilo_uid==time_to_move[0]){
 			set_motion(FORWARD);
 		}
 	}
-	
-	if(kilo_ticks>330 && kilo_ticks<350 ){ //+20  // comm
+	if(kilo_ticks>341 && kilo_ticks<441 ){ //+100 com
 		if(kilo_uid==time_to_move[0]){
 			set_motion(STOP);
+			message.crc=message_crc(&message); //TX
 		}
-	}
-	
-	
-	if(kilo_ticks>350 && kilo_ticks<450 ){ //+100
-		if(kilo_uid==time_to_move[0]){
-			set_motion(LEFT);
-		}
-	}
-	if(kilo_ticks>450 && kilo_ticks<503 ){ //+53
-		if(kilo_uid==time_to_move[0]){
-			set_motion(FORWARD);
-		}
-	}
-	if(kilo_ticks>503 && kilo_ticks<523 ){ //+20  // comm
-		if(kilo_uid==time_to_move[0]){
-			set_motion(STOP);
-		}
-	}
-	if(kilo_ticks>523 && kilo_ticks<660 ){ //+138
-		if(kilo_uid==time_to_move[0]){
-			set_motion(LEFT);
-		}
-	}
-	if(kilo_ticks>660 && kilo_ticks<703 ){ //+42
-		if(kilo_uid==time_to_move[0]){
-			set_motion(FORWARD);
-		}
-	}
-	if(kilo_ticks>703 && kilo_ticks<723 ){ //+20  // comm
-		if(kilo_uid==time_to_move[0]){
-			set_motion(STOP);
-		}
-	}
-	if(kilo_ticks>723 && kilo_ticks<814 ){ //+91
-		if(kilo_uid==time_to_move[0]){
-			set_motion(LEFT);
-		}
-	}
-	if(kilo_ticks>814 && kilo_ticks<897 ){ //+83
-		if(kilo_uid==time_to_move[0]){
-			set_motion(FORWARD);
-		}
-	}
-	if(kilo_ticks>=897 && kilo_ticks<910 ){ //+13
-		if(kilo_uid==time_to_move[0]){
-			set_motion(STOP);
-		}
-	}
-	
-
-	
-	/*
-	if(kilo_ticks>293){
-		
-		if(kilo_uid==time_to_move[0]){
-		message.data[0] = 21;
-		message.crc=message_crc(&message); //TX
-		}
-		
 		if(kilo_uid==time_to_move[1]){
-			if(new_message==time_to_move[1]+1){
+			if(new_message==time_to_move[1]+1){  //RX of L1
 					new_message=0;
-					ack[0]=1;
-					set_color(RGB(0,0,0));
+					L1_commands[0]=message.data[1];
+					printf("\n___ K id %d  ___ receives command ___ ", time_to_move[1]);
+					printf("%d ___", L1_commands[0]);
+					printf(" at tick: %d", kilo_ticks);
+					printf("\n");
 			}
 		}
 		if(kilo_uid==time_to_move[2]){
-			if(new_message==time_to_move[2]+1){
+			if(new_message==time_to_move[2]+1){ //RX of L2
 					new_message=0;
-					ack[1]=1;
-					set_color(RGB(0,0,0));
+					L2_commands[0]=message.data[2];
+					printf("\n___ K id %d  ___ receives command ___ ", time_to_move[2]);
+					printf("%d ___", L2_commands[0]);
+					printf(" at tick: %d", kilo_ticks);
+					printf("\n");
 			}
 		}
 		if(kilo_uid==time_to_move[3]){
-			if(new_message==time_to_move[3]+1){
+			if(new_message==time_to_move[3]+1){ //RX of L3
 					new_message=0;
-					ack[2]=1;
-					set_color(RGB(0,0,0));
+					L3_commands[0]=message.data[3];
+					printf("\n___ K id %d  ___ receives command ___ ", time_to_move[3]);
+					printf("%d ___", L3_commands[0]);
+					printf(" at tick: %d", kilo_ticks);
+					printf("\n");
 			}
 		}
 		
-		printf("\n\n ACK=  %d\n", (ack[0]+ack[1]+ack[2]));
 		
-	}*/
+		
+	}
+	
+	if(kilo_ticks>441 && kilo_ticks<535 ){  //+94
+		if(kilo_uid==time_to_move[0]){
+			set_motion(LEFT);
+		}
+	}
+	if(kilo_ticks>535 && kilo_ticks<590 ){  //+55
+		if(kilo_uid==time_to_move[0]){
+			set_motion(FORWARD);
+		}
+	}
+	if(kilo_ticks>590 && kilo_ticks<690 ){  // +100 com
+		if(kilo_uid==time_to_move[0]){
+			set_motion(STOP);
+			message.crc=message_crc(&message); //TX
+		}
+		
+		if(kilo_uid==time_to_move[1]){
+			if(new_message==time_to_move[1]+1){  //RX of L1
+					new_message=0;
+					L1_commands[0]=message.data[1];
+					printf("\n___ K id %d  ___ receives command ___ ", time_to_move[1]);
+					printf("%d ___", L1_commands[0]);
+					printf(" at tick: %d", kilo_ticks);
+					printf("\n");
+			}
+		}
+		if(kilo_uid==time_to_move[2]){
+			if(new_message==time_to_move[2]+1){ //RX of L2
+					new_message=0;
+					L2_commands[0]=message.data[2];
+					printf("\n___ K id %d  ___ receives command ___ ", time_to_move[2]);
+					printf("%d ___", L2_commands[0]);
+					printf(" at tick: %d", kilo_ticks);
+					printf("\n");
+			}
+		}
+		if(kilo_uid==time_to_move[3]){
+			if(new_message==time_to_move[3]+1){ //RX of L3
+					new_message=0;
+					L3_commands[0]=message.data[3];
+					printf("\n___ K id %d  ___ receives command ___ ", time_to_move[3]);
+					printf("%d ___", L3_commands[0]);
+					printf(" at tick: %d", kilo_ticks);
+					printf("\n");
+			}
+		}
+	}
+	
+	if(kilo_ticks>690 && kilo_ticks<817 ){  //+127
+		if(kilo_uid==time_to_move[0]){
+			set_motion(LEFT);
+		}
+	}
+	if(kilo_ticks>817 && kilo_ticks<877 ){  //+60
+		if(kilo_uid==time_to_move[0]){
+			set_motion(FORWARD);
+		}
+	}
+	if(kilo_ticks>877 && kilo_ticks<1002 ){  //+125 com
+		if(kilo_uid==time_to_move[0]){
+			set_motion(STOP);
+			message.crc=message_crc(&message); //TX
+		}
+		
+		if(kilo_uid==time_to_move[1]){
+			if(new_message==time_to_move[1]+1){  //RX of L1
+					new_message=0;
+					L1_commands[0]=message.data[1];
+					printf("\n___ K id %d  ___ receives command ___ ", time_to_move[1]);
+					printf("%d ___", L1_commands[0]);
+					printf(" at tick: %d", kilo_ticks);
+					printf("\n");
+			}
+		}
+		if(kilo_uid==time_to_move[2]){
+			if(new_message==time_to_move[2]+1){ //RX of L2
+					new_message=0;
+					L2_commands[0]=message.data[2];
+					printf("\n___ K id %d  ___ receives command ___ ", time_to_move[2]);
+					printf("%d ___", L2_commands[0]);
+					printf(" at tick: %d", kilo_ticks);
+					printf("\n");
+			}
+		}
+		if(kilo_uid==time_to_move[3]){
+			if(new_message==time_to_move[3]+1){ //RX of L3
+					new_message=0;
+					L3_commands[0]=message.data[3];
+					printf("\n___ K id %d  ___ receives command ___ ", time_to_move[3]);
+					printf("%d ___", L3_commands[0]);
+					printf(" at tick: %d", kilo_ticks);
+					printf("\n");
+			}
+		}
+		
+	}
+	
+	
+	if(kilo_ticks>1002 && kilo_ticks<1120 ){  //+118
+		if(kilo_uid==time_to_move[0]){
+			set_motion(LEFT);
+		}
+	}
+	if(kilo_ticks>1120 && kilo_ticks<1213 ){  //+93
+		if(kilo_uid==time_to_move[0]){
+			set_motion(FORWARD);
+		}
+	}
+	if(kilo_ticks>1213 && kilo_ticks<1225 ){  //+12
+		if(kilo_uid==time_to_move[0]){
+			set_motion(STOP);
+		}
+	}
+	
+	/*
+	
+	
+	
+	if(kilo_ticks>330 && kilo_ticks<350 ){ //+20  // communication interval
+		
+		if(kilo_uid==time_to_move[0]){
+			set_motion(STOP);
+			message.data[0] = G_commands[1];
+			
+		}
+		
+		if(kilo_uid==time_to_move[1]){
+			if(new_message==time_to_move[1]+1){  //RX of L1
+					new_message=0;
+					L1_commands[0]=message.data[0];
+					printf("\n___ K id %d  ___ receives command ___ ", time_to_move[1]);
+					printf("%d ___", L1_commands[0]);
+					printf(" at tick: %d", kilo_ticks);
+					printf("\n");
+			}
+		}
+		if(kilo_uid==time_to_move[2]){
+			if(new_message==time_to_move[2]+1){ //RX of L2
+					new_message=0;
+					L2_commands[0]=message.data[0];
+					printf("\n___ K id %d  ___ receives command ___ ", time_to_move[2]);
+					printf("%d ___", L2_commands[0]);
+					printf(" at tick: %d", kilo_ticks);
+					printf("\n");
+			}
+		}
+		if(kilo_uid==time_to_move[3]){
+			if(new_message==time_to_move[3]+1){ //RX of L3
+					new_message=0;
+					L3_commands[0]=message.data[0];
+					printf("\n___ K id %d  ___ receives command ___ ", time_to_move[3]);
+					printf("%d ___", L3_commands[0]);
+					printf(" at tick: %d", kilo_ticks);
+					printf("\n");
+			}
+		}
+		
+	}
+	*/
+	
+	
 	
 }
 
@@ -351,21 +469,27 @@ void createGeneralCommands(int general, int traitor){
 		int new_command;
 		
 		if (general != traitor){ // if general is loyal, create only one order
-			new_command=rand() %2;
+		
+			new_command=(rand() %2)+1;
+			
 			for(int count = 0; count<4; count++){
 				G_commands[count]=new_command;
 			}
 		} else{ //else if general is the traitor, create different orders
-			for(int count = 0; count<4; count++){
-				new_command=rand() %2;
+			for(int count = 0; count<3; count++){
+				
+				new_command=(rand() %2)+1;
+				
 				G_commands[count]=new_command;
 				new_command=NULL;
 			}
+				G_commands[3] = (G_commands[1]%2)+1;
 		}
 
-
+		printf("\n=============== Random general command... ===============");
 		printf("\n\ncommand 0 = %d\n", G_commands[0]);
 		printf("\n\ncommand 1 = %d\n", G_commands[1]);
 		printf("\n\ncommand 2 = %d\n", G_commands[2]);
 		printf("\n\ncommand 3 = %d\n", G_commands[3]);
+		printf("\n=============== \n");
 }
