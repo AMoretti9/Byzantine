@@ -5,29 +5,29 @@
       "direction": 0.0,
       "state": {},
       "x_position": 0.0,
-      "y_position": -100.0
+      "y_position": -130.0
     },
     {
       "ID": 1,
       "direction": 55.0,
       "state": {},
-      "x_position": 100.0,
+      "x_position": 130.0,
       "y_position": 0.0
     },
     {
       "ID": 2,
-      "direction": 110.0,
+      "direction": 113.5657347225691,
       "state": {},
-      "x_position": 0.0,
-      "y_position": 100.0
+      "x_position": -1.0929437306209875,
+      "y_position": 133.96761041160295
     },
     {
       "ID": 3,
       "direction": -55.0,
       "state": {},
-      "x_position": -100.0,
+      "x_position": -130.0,
       "y_position": 0.0
     }
   ],
-  "ticks": 335
+  "ticks": 1146
 }

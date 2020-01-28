@@ -5,29 +5,29 @@
       "direction": 0.0,
       "state": {},
       "x_position": 0.0,
-      "y_position": -100.0
+      "y_position": -130.0
     },
     {
       "ID": 1,
       "direction": 55.0,
       "state": {},
-      "x_position": 100.0,
+      "x_position": 130.0,
       "y_position": 0.0
     }
 	,
     {
       "ID": 2,
-      "direction": 110.0,
+      "direction": 109.95,
       "state": {},
       "x_position": 0.0,
-      "y_position": 100.0
+      "y_position": 130.0
     }
 	,
     {
       "ID": 3,
       "direction": -55.0,
       "state": {},
-      "x_position": -100.0,
+      "x_position": -130.0,
       "y_position": 0.0
     }
   ],

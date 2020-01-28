@@ -35,12 +35,25 @@ int new_message=0; //RX - variabile usata per indicare la presenza di nuovi mess
 
 
 //VARIABILI DI SERVIZIO
+
+int general; //uid of general
+int traitor; //uid of traitor
+
 int random_general;  // used to draw the general only one time
 int random_traitor;  // used to draw the traitor only one time
+int random_command; //used to draw the initial command
 int generalElected; // uid of the kilobot chosen as general
 int traitorElected; // uid of the kilobot chosen as traitor
 
 int time_to_move[4]; // used to define the round of movement for each kilobot
+
+int G_commands[4]; // command to forward to other kilobot
+int L1_commands[4]; // command to forward to other kilobot
+int L2_commands[4]; // command to forward to other kilobot
+int L3_commands[4]; // command to forward to other kilobot
+
+int ack[3] = {0,0,0};
+
 
 // TRASMETTERE MESSAGGIO
 message_t *message_tx() {
@@ -53,7 +66,21 @@ void message_tx_success(){
 
 //RICEVERE MESSAGGIO
 void message_rx(message_t *message, distance_measurement_t *distance){
-	new_message=1;
+	if(kilo_uid==time_to_move[0]){
+	new_message=time_to_move[0]+1;
+	}
+	
+	if(kilo_uid==time_to_move[1]){
+	new_message=time_to_move[1]+1;
+	}
+	
+	if(kilo_uid==time_to_move[2]){
+	new_message=time_to_move[2]+1;
+	}
+	
+	if(kilo_uid==time_to_move[3]){
+	new_message=time_to_move[3]+1;
+	}
 }
 
 void smooth_set_motors(uint8_t ccw, uint8_t cw)
@@ -99,11 +126,12 @@ void setup()
 {
 	
 	message.type=NORMAL; //TX
-	//message.data[3] = NULL; //TX - (contenuto del messaggio)
+	message.data[0] = NULL; //TX - (contenuto del messaggio)
 	message.crc=message_crc(&message); //TX
 	
 	random_general=0;
 	random_traitor=0;
+	random_command=0;
 	
 	if (kilo_uid < 4)
     set_color(RGB(3,3,3));  // all kilobots start white
@@ -138,6 +166,94 @@ void loop() {   //32 ticks = 1 sec
 		}
 	}
 	
+	if(kilo_ticks>192 && kilo_ticks<210){
+		if(random_command==0){
+			createGeneralCommands(general, traitor); // here the general creates the command to forward
+		}
+	}
+	
+	if(kilo_ticks>210 && kilo_ticks<246 ){  //=================== MOVEMENT OF 1
+		if(kilo_uid==time_to_move[0]){
+			set_motion(RIGHT);
+		}
+	}
+	if(kilo_ticks>246 && kilo_ticks<330 ){ 
+		if(kilo_uid==time_to_move[0]){
+			set_motion(FORWARD);
+		}
+	}
+	if(kilo_ticks>330 && kilo_ticks<430 ){ 
+		if(kilo_uid==time_to_move[0]){
+			set_motion(LEFT);
+		}
+	}
+	if(kilo_ticks>430 && kilo_ticks<483 ){ 
+		if(kilo_uid==time_to_move[0]){
+			set_motion(FORWARD);
+		}
+	}
+	if(kilo_ticks>483 && kilo_ticks<621 ){ 
+		if(kilo_uid==time_to_move[0]){
+			set_motion(LEFT);
+		}
+	}
+	if(kilo_ticks>621 && kilo_ticks<663 ){ 
+		if(kilo_uid==time_to_move[0]){
+			set_motion(FORWARD);
+		}
+	}
+	if(kilo_ticks>663 && kilo_ticks<754 ){ 
+		if(kilo_uid==time_to_move[0]){
+			set_motion(LEFT);
+		}
+	}
+	if(kilo_ticks>754 && kilo_ticks<837 ){ 
+		if(kilo_uid==time_to_move[0]){
+			set_motion(FORWARD);
+		}
+	}
+	if(kilo_ticks>=837 && kilo_ticks<850 ){ 
+		if(kilo_uid==time_to_move[0]){
+			set_motion(STOP);
+		}
+	}
+	
+	
+	
+	/*
+	if(kilo_ticks>293){
+		
+		if(kilo_uid==time_to_move[0]){
+		message.data[0] = 21;
+		message.crc=message_crc(&message); //TX
+		}
+		
+		if(kilo_uid==time_to_move[1]){
+			if(new_message==time_to_move[1]+1){
+					new_message=0;
+					ack[0]=1;
+					set_color(RGB(0,0,0));
+			}
+		}
+		if(kilo_uid==time_to_move[2]){
+			if(new_message==time_to_move[2]+1){
+					new_message=0;
+					ack[1]=1;
+					set_color(RGB(0,0,0));
+			}
+		}
+		if(kilo_uid==time_to_move[3]){
+			if(new_message==time_to_move[3]+1){
+					new_message=0;
+					ack[2]=1;
+					set_color(RGB(0,0,0));
+			}
+		}
+		
+		printf("\n\n ACK=  %d\n", (ack[0]+ack[1]+ack[2]));
+		
+	}*/
+	
 }
 
 int main() {
@@ -158,7 +274,7 @@ int general_draw(){
 	
 	srand ( time(NULL) );
 	
-	int general = rand() %4;
+	general = rand() %4;
 	random_general=1;
 	printf("===============\nINFO: the GENERAL is the kilobot with uid: %d\n===============\n", general);
 	
@@ -174,13 +290,13 @@ int traitor_draw(){
 	
 	srand ( time(NULL) );
 	
-	int traitor = rand() %5;
+	traitor = rand() %5;
 	random_traitor=1;
 	
 	if(traitor==4){
 		printf("===============\nINFO: No kilobot as the traitor\n===============\n");
 	} else{
-			printf("===============\nINFO: the TRAITOR is the kilobot with uid: %d\n===============\n", traitor);
+		printf("===============\nINFO: the TRAITOR is the kilobot with uid: %d\n===============\n", traitor);
 	}
 	
 	return traitor;
@@ -203,8 +319,18 @@ void time_to_move_impl(int general){
 		
 	} else if (general==3){
 		time_to_move[0]=3; time_to_move[1]=0; time_to_move[2]=1; time_to_move[3] = 2;
-			printf("===============\nINFO: order of movements (kilo_uid): 3, 0, 1, 2\n===============\n");
+		printf("===============\nINFO: order of movements (kilo_uid): 3, 0, 1, 2\n===============\n");
 			
 	}
 	
+}
+
+void createGeneralCommands(int general, int traitor){
+	
+		random_command=1;
+	
+		if (general != traitor){
+			
+		}
+
 }
