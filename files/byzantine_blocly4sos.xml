@@ -234,8 +234,8 @@
                                                                                         <next>
                                                                                           <block type="simple_requirement" id="494">
                                                                                             <field name="req_id">R19</field>
-                                                                                            <field name="title">General as traitor, send 2 equal commands and 1 different command</field>
-                                                                                            <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+                                                                                            <field name="title">General as traitor, send casual different command</field>
+                                                                                            <requirement pinned="true" h="57.828125" w="313.953125">Satisfied by block(s) :
 --------------------------------
 1. Service : G send attack or retreat command
                                                                                             </requirement>

@@ -16,18 +16,18 @@
     },
     {
       "ID": 2,
-      "direction": 113.5657347225691,
+      "direction": 109.95,
       "state": {},
-      "x_position": -1.0929437306209875,
-      "y_position": 133.96761041160295
+      "x_position": 0.0,
+      "y_position": 130.0
     },
     {
       "ID": 3,
-      "direction": -55.0,
+      "direction": -55.447967133769623,
       "state": {},
-      "x_position": -130.0,
-      "y_position": 0.0
+      "x_position": -30.381190589812391,
+      "y_position": 53.879338112110887
     }
   ],
-  "ticks": 1146
+  "ticks": 313
 }

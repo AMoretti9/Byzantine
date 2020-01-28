@@ -48,9 +48,9 @@ int traitorElected; // uid of the kilobot chosen as traitor
 int time_to_move[4]; // used to define the round of movement for each kilobot
 
 int G_commands[4]; // command to forward to other kilobot
-int L1_commands[4]; // command to forward to other kilobot
-int L2_commands[4]; // command to forward to other kilobot
-int L3_commands[4]; // command to forward to other kilobot
+int L1_commands[3]; // command to forward to other kilobot
+int L2_commands[3]; // command to forward to other kilobot
+int L3_commands[3]; // command to forward to other kilobot
 
 int ack[3] = {0,0,0};
 
@@ -172,53 +172,73 @@ void loop() {   //32 ticks = 1 sec
 		}
 	}
 	
-	if(kilo_ticks>210 && kilo_ticks<246 ){  //=================== MOVEMENT OF 1
+	
+	//=================================== MOVEMENT OF 1
+	if(kilo_ticks>210 && kilo_ticks<246 ){   //+36
 		if(kilo_uid==time_to_move[0]){
 			set_motion(RIGHT);
 		}
 	}
-	if(kilo_ticks>246 && kilo_ticks<330 ){ 
+	if(kilo_ticks>246 && kilo_ticks<330 ){ //+84
 		if(kilo_uid==time_to_move[0]){
 			set_motion(FORWARD);
 		}
 	}
-	if(kilo_ticks>330 && kilo_ticks<430 ){ 
-		if(kilo_uid==time_to_move[0]){
-			set_motion(LEFT);
-		}
-	}
-	if(kilo_ticks>430 && kilo_ticks<483 ){ 
-		if(kilo_uid==time_to_move[0]){
-			set_motion(FORWARD);
-		}
-	}
-	if(kilo_ticks>483 && kilo_ticks<621 ){ 
-		if(kilo_uid==time_to_move[0]){
-			set_motion(LEFT);
-		}
-	}
-	if(kilo_ticks>621 && kilo_ticks<663 ){ 
-		if(kilo_uid==time_to_move[0]){
-			set_motion(FORWARD);
-		}
-	}
-	if(kilo_ticks>663 && kilo_ticks<754 ){ 
-		if(kilo_uid==time_to_move[0]){
-			set_motion(LEFT);
-		}
-	}
-	if(kilo_ticks>754 && kilo_ticks<837 ){ 
-		if(kilo_uid==time_to_move[0]){
-			set_motion(FORWARD);
-		}
-	}
-	if(kilo_ticks>=837 && kilo_ticks<850 ){ 
+	
+	if(kilo_ticks>330 && kilo_ticks<350 ){ //+20  // comm
 		if(kilo_uid==time_to_move[0]){
 			set_motion(STOP);
 		}
 	}
 	
 	
+	if(kilo_ticks>350 && kilo_ticks<450 ){ //+100
+		if(kilo_uid==time_to_move[0]){
+			set_motion(LEFT);
+		}
+	}
+	if(kilo_ticks>450 && kilo_ticks<503 ){ //+53
+		if(kilo_uid==time_to_move[0]){
+			set_motion(FORWARD);
+		}
+	}
+	if(kilo_ticks>503 && kilo_ticks<523 ){ //+20  // comm
+		if(kilo_uid==time_to_move[0]){
+			set_motion(STOP);
+		}
+	}
+	if(kilo_ticks>523 && kilo_ticks<660 ){ //+138
+		if(kilo_uid==time_to_move[0]){
+			set_motion(LEFT);
+		}
+	}
+	if(kilo_ticks>660 && kilo_ticks<703 ){ //+42
+		if(kilo_uid==time_to_move[0]){
+			set_motion(FORWARD);
+		}
+	}
+	if(kilo_ticks>703 && kilo_ticks<723 ){ //+20  // comm
+		if(kilo_uid==time_to_move[0]){
+			set_motion(STOP);
+		}
+	}
+	if(kilo_ticks>723 && kilo_ticks<814 ){ //+91
+		if(kilo_uid==time_to_move[0]){
+			set_motion(LEFT);
+		}
+	}
+	if(kilo_ticks>814 && kilo_ticks<897 ){ //+83
+		if(kilo_uid==time_to_move[0]){
+			set_motion(FORWARD);
+		}
+	}
+	if(kilo_ticks>=897 && kilo_ticks<910 ){ //+13
+		if(kilo_uid==time_to_move[0]){
+			set_motion(STOP);
+		}
+	}
+	
+
 	
 	/*
 	if(kilo_ticks>293){
@@ -328,9 +348,24 @@ void time_to_move_impl(int general){
 void createGeneralCommands(int general, int traitor){
 	
 		random_command=1;
-	
-		if (general != traitor){
-			
+		int new_command;
+		
+		if (general != traitor){ // if general is loyal, create only one order
+			new_command=rand() %2;
+			for(int count = 0; count<4; count++){
+				G_commands[count]=new_command;
+			}
+		} else{ //else if general is the traitor, create different orders
+			for(int count = 0; count<4; count++){
+				new_command=rand() %2;
+				G_commands[count]=new_command;
+				new_command=NULL;
+			}
 		}
 
+
+		printf("\n\ncommand 0 = %d\n", G_commands[0]);
+		printf("\n\ncommand 1 = %d\n", G_commands[1]);
+		printf("\n\ncommand 2 = %d\n", G_commands[2]);
+		printf("\n\ncommand 3 = %d\n", G_commands[3]);
 }
