@@ -52,8 +52,6 @@ int L1_commands[3]; // command to forward to other kilobot
 int L2_commands[3]; // command to forward to other kilobot
 int L3_commands[3]; // command to forward to other kilobot
 
-int ack[3] = {0,0,0};
-
 
 // TRASMETTERE MESSAGGIO
 message_t *message_tx() {
@@ -177,9 +175,10 @@ void loop() {   //32 ticks = 1 sec
 		message.data[2] = G_commands[2];
 		message.data[3] = G_commands[3];
 		
+		
 	}
 	
-	//=================================== MOVEMENT OF 1
+	//=================================== MOVEMENT OF 1 (GENERAL)
 	if(kilo_ticks>210 && kilo_ticks<252 ){   //+42
 		if(kilo_uid==time_to_move[0]){
 			set_motion(RIGHT);
@@ -199,7 +198,7 @@ void loop() {   //32 ticks = 1 sec
 			if(new_message==time_to_move[1]+1){  //RX of L1
 					new_message=0;
 					L1_commands[0]=message.data[1];
-					printf("\n___ K id %d  ___ receives command ___ ", time_to_move[1]);
+					printf("\n___ K id %d  ___ receives 1st command ___ ", time_to_move[1]);
 					printf("%d ___", L1_commands[0]);
 					printf(" at tick: %d", kilo_ticks);
 					printf("\n");
@@ -209,7 +208,7 @@ void loop() {   //32 ticks = 1 sec
 			if(new_message==time_to_move[2]+1){ //RX of L2
 					new_message=0;
 					L2_commands[0]=message.data[2];
-					printf("\n___ K id %d  ___ receives command ___ ", time_to_move[2]);
+					printf("\n___ K id %d  ___ receives 1st command ___ ", time_to_move[2]);
 					printf("%d ___", L2_commands[0]);
 					printf(" at tick: %d", kilo_ticks);
 					printf("\n");
@@ -219,7 +218,7 @@ void loop() {   //32 ticks = 1 sec
 			if(new_message==time_to_move[3]+1){ //RX of L3
 					new_message=0;
 					L3_commands[0]=message.data[3];
-					printf("\n___ K id %d  ___ receives command ___ ", time_to_move[3]);
+					printf("\n___ K id %d  ___ receives 1st command ___ ", time_to_move[3]);
 					printf("%d ___", L3_commands[0]);
 					printf(" at tick: %d", kilo_ticks);
 					printf("\n");
@@ -250,7 +249,7 @@ void loop() {   //32 ticks = 1 sec
 			if(new_message==time_to_move[1]+1){  //RX of L1
 					new_message=0;
 					L1_commands[0]=message.data[1];
-					printf("\n___ K id %d  ___ receives command ___ ", time_to_move[1]);
+					printf("\n___ K id %d  ___ receives 1st command ___ ", time_to_move[1]);
 					printf("%d ___", L1_commands[0]);
 					printf(" at tick: %d", kilo_ticks);
 					printf("\n");
@@ -260,7 +259,7 @@ void loop() {   //32 ticks = 1 sec
 			if(new_message==time_to_move[2]+1){ //RX of L2
 					new_message=0;
 					L2_commands[0]=message.data[2];
-					printf("\n___ K id %d  ___ receives command ___ ", time_to_move[2]);
+					printf("\n___ K id %d  ___ receives 1st command ___ ", time_to_move[2]);
 					printf("%d ___", L2_commands[0]);
 					printf(" at tick: %d", kilo_ticks);
 					printf("\n");
@@ -270,7 +269,7 @@ void loop() {   //32 ticks = 1 sec
 			if(new_message==time_to_move[3]+1){ //RX of L3
 					new_message=0;
 					L3_commands[0]=message.data[3];
-					printf("\n___ K id %d  ___ receives command ___ ", time_to_move[3]);
+					printf("\n___ K id %d  ___ receives 1st command ___ ", time_to_move[3]);
 					printf("%d ___", L3_commands[0]);
 					printf(" at tick: %d", kilo_ticks);
 					printf("\n");
@@ -298,7 +297,7 @@ void loop() {   //32 ticks = 1 sec
 			if(new_message==time_to_move[1]+1){  //RX of L1
 					new_message=0;
 					L1_commands[0]=message.data[1];
-					printf("\n___ K id %d  ___ receives command ___ ", time_to_move[1]);
+					printf("\n___ K id %d  ___ receives 1st command ___ ", time_to_move[1]);
 					printf("%d ___", L1_commands[0]);
 					printf(" at tick: %d", kilo_ticks);
 					printf("\n");
@@ -308,7 +307,7 @@ void loop() {   //32 ticks = 1 sec
 			if(new_message==time_to_move[2]+1){ //RX of L2
 					new_message=0;
 					L2_commands[0]=message.data[2];
-					printf("\n___ K id %d  ___ receives command ___ ", time_to_move[2]);
+					printf("\n___ K id %d  ___ receives 1st command ___ ", time_to_move[2]);
 					printf("%d ___", L2_commands[0]);
 					printf(" at tick: %d", kilo_ticks);
 					printf("\n");
@@ -318,7 +317,7 @@ void loop() {   //32 ticks = 1 sec
 			if(new_message==time_to_move[3]+1){ //RX of L3
 					new_message=0;
 					L3_commands[0]=message.data[3];
-					printf("\n___ K id %d  ___ receives command ___ ", time_to_move[3]);
+					printf("\n___ K id %d  ___ receives 1st command ___ ", time_to_move[3]);
 					printf("%d ___", L3_commands[0]);
 					printf(" at tick: %d", kilo_ticks);
 					printf("\n");
@@ -341,37 +340,47 @@ void loop() {   //32 ticks = 1 sec
 	if(kilo_ticks>1213 && kilo_ticks<1225 ){  //+12
 		if(kilo_uid==time_to_move[0]){
 			set_motion(STOP);
-		}
-	}
-	
-	/*
-	
-	
-	
-	if(kilo_ticks>330 && kilo_ticks<350 ){ //+20  // communication interval
-		
-		if(kilo_uid==time_to_move[0]){
-			set_motion(STOP);
-			message.data[0] = G_commands[1];
+			
+			printf("\nsomma di %d", time_to_move[1]); printf(" uguale a = %d", (L1_commands[0]+L1_commands[1]+L1_commands[2]));  //util
+			printf("\nsomma di %d", time_to_move[2]); printf(" uguale a = %d", (L2_commands[0]+L2_commands[1]+L2_commands[2]));  //util  
+			printf("\nsomma di %d", time_to_move[3]); printf(" uguale a = %d", (L3_commands[0]+L3_commands[1]+L3_commands[2]));  //util
 			
 		}
 		
+		
+		
+		//IF L1 IS THE TRAITOR, NOW REVERSE THE COMMAND
+		
+		
+		message.data[1] = L1_commands[0];
+		message.data[2] = NULL; message.data[3] = NULL; //unused
+		
+	}
+	
+	
+		//=================================== MOVEMENT OF 2 (LIEUTENANT 1)
+	if(kilo_ticks>1230 && kilo_ticks<1272 ){   //+42
 		if(kilo_uid==time_to_move[1]){
-			if(new_message==time_to_move[1]+1){  //RX of L1
-					new_message=0;
-					L1_commands[0]=message.data[0];
-					printf("\n___ K id %d  ___ receives command ___ ", time_to_move[1]);
-					printf("%d ___", L1_commands[0]);
-					printf(" at tick: %d", kilo_ticks);
-					printf("\n");
-			}
+			set_motion(RIGHT);
 		}
+	}
+	if(kilo_ticks>1272 && kilo_ticks<1361 ){  //+89
+		if(kilo_uid==time_to_move[1]){
+			set_motion(FORWARD);
+		}
+	}
+	if(kilo_ticks>1361 && kilo_ticks<1461 ){ //+100 com
+		if(kilo_uid==time_to_move[1]){
+			set_motion(STOP);
+			message.crc=message_crc(&message); //TX
+		}
+		
 		if(kilo_uid==time_to_move[2]){
 			if(new_message==time_to_move[2]+1){ //RX of L2
 					new_message=0;
-					L2_commands[0]=message.data[0];
-					printf("\n___ K id %d  ___ receives command ___ ", time_to_move[2]);
-					printf("%d ___", L2_commands[0]);
+					L2_commands[1]=message.data[1];
+					printf("\n___ K id %d  ___ receives 2nd command ___ ", time_to_move[2]);
+					printf("%d ___", L2_commands[1]);
 					printf(" at tick: %d", kilo_ticks);
 					printf("\n");
 			}
@@ -379,17 +388,124 @@ void loop() {   //32 ticks = 1 sec
 		if(kilo_uid==time_to_move[3]){
 			if(new_message==time_to_move[3]+1){ //RX of L3
 					new_message=0;
-					L3_commands[0]=message.data[0];
-					printf("\n___ K id %d  ___ receives command ___ ", time_to_move[3]);
-					printf("%d ___", L3_commands[0]);
+					L3_commands[1]=message.data[1];
+					printf("\n___ K id %d  ___ receives 2nd command ___ ", time_to_move[3]);
+					printf("%d ___", L3_commands[1]);
+					printf(" at tick: %d", kilo_ticks);
+					printf("\n");
+			}
+		}
+		
+		
+	}
+	
+	if(kilo_ticks>1461 && kilo_ticks<1555 ){  //+94
+		if(kilo_uid==time_to_move[1]){
+			set_motion(LEFT);
+		}
+	}
+	if(kilo_ticks>1555 && kilo_ticks<1610 ){  //+55
+		if(kilo_uid==time_to_move[1]){
+			set_motion(FORWARD);
+		}
+	}
+	if(kilo_ticks>1610 && kilo_ticks<1710 ){  // +100 com
+		if(kilo_uid==time_to_move[1]){
+			set_motion(STOP);
+			message.crc=message_crc(&message); //TX
+		}
+		
+		
+		if(kilo_uid==time_to_move[2]){
+			if(new_message==time_to_move[2]+1){ //RX of L2
+					new_message=0;
+					L2_commands[1]=message.data[1];
+					printf("\n___ K id %d  ___ receives 2nd command ___ ", time_to_move[2]);
+					printf("%d ___", L2_commands[1]);
+					printf(" at tick: %d", kilo_ticks);
+					printf("\n");
+			}
+		}
+		if(kilo_uid==time_to_move[3]){
+			if(new_message==time_to_move[3]+1){ //RX of L3
+					new_message=0;
+					L3_commands[1]=message.data[1];
+					printf("\n___ K id %d  ___ receives 2nd command ___ ", time_to_move[3]);
+					printf("%d ___", L3_commands[1]);
+					printf(" at tick: %d", kilo_ticks);
+					printf("\n");
+			}
+		}
+		
+		
+		
+	}
+	
+		if(kilo_ticks>1710 && kilo_ticks<1837 ){  //+127
+		if(kilo_uid==time_to_move[1]){
+			set_motion(LEFT);
+		}
+	}
+	if(kilo_ticks>1837 && kilo_ticks<1897 ){  //+60
+		if(kilo_uid==time_to_move[1]){
+			set_motion(FORWARD);
+		}
+	}
+	if(kilo_ticks>1897 && kilo_ticks<1997 ){  //+125 com
+		if(kilo_uid==time_to_move[1]){
+			set_motion(STOP);
+			message.crc=message_crc(&message); //TX
+		}
+		
+		
+		if(kilo_uid==time_to_move[2]){
+			if(new_message==time_to_move[2]+1){ //RX of L2
+					new_message=0;
+					L2_commands[1]=message.data[1];
+					printf("\n___ K id %d  ___ receives 2nd command ___ ", time_to_move[2]);
+					printf("%d ___", L2_commands[1]);
+					printf(" at tick: %d", kilo_ticks);
+					printf("\n");
+			}
+		}
+		if(kilo_uid==time_to_move[3]){
+			if(new_message==time_to_move[3]+1){ //RX of L3
+					new_message=0;
+					L3_commands[1]=message.data[1];
+					printf("\n___ K id %d  ___ receives 2nd command ___ ", time_to_move[3]);
+					printf("%d ___", L3_commands[1]);
 					printf(" at tick: %d", kilo_ticks);
 					printf("\n");
 			}
 		}
 		
 	}
-	*/
 	
+	if(kilo_ticks>1897 && kilo_ticks<2015 ){  //+118
+		if(kilo_uid==time_to_move[1]){
+			set_motion(LEFT);
+		}
+	}
+	if(kilo_ticks>2015 && kilo_ticks<2108 ){  //+93
+		if(kilo_uid==time_to_move[1]){
+			set_motion(FORWARD);
+		}
+	}
+	if(kilo_ticks>2108 && kilo_ticks<2120 ){  //+12
+		if(kilo_uid==time_to_move[1]){
+			set_motion(STOP);
+			
+			printf("\nsomma di %d", time_to_move[1]); printf(" uguale a = %d", (L1_commands[0]+L1_commands[1]+L1_commands[2]));  //util
+			printf("\nsomma di %d", time_to_move[2]); printf(" uguale a = %d", (L2_commands[0]+L2_commands[1]+L2_commands[2]));  //util  
+			printf("\nsomma di %d", time_to_move[3]); printf(" uguale a = %d", (L3_commands[0]+L3_commands[1]+L3_commands[2]));  //util
+			
+		}
+		
+		message.data[1] = NULL;
+		message.data[2] = NULL;
+		message.data[3] = NULL;
+		
+	}
 	
 	
 }

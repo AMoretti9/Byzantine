@@ -210,7 +210,7 @@
                                                                                 <next>
                                                                                   <block type="simple_requirement" id="267">
                                                                                     <field name="req_id">R17</field>
-                                                                                    <field name="title">Each kilobot send the command: 1 attack or 0 retreat</field>
+                                                                                    <field name="title">Each kilobot send the command: 1 attack or 2 retreat</field>
                                                                                     <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
 --------------------------------
 1. Service : G send attack or retreat command
@@ -235,7 +235,7 @@
                                                                                           <block type="simple_requirement" id="494">
                                                                                             <field name="req_id">R19</field>
                                                                                             <field name="title">General as traitor, send casual different command</field>
-                                                                                            <requirement pinned="true" h="57.828125" w="313.953125">Satisfied by block(s) :
+                                                                                            <requirement pinned="false" h="57" w="313">Satisfied by block(s) :
 --------------------------------
 1. Service : G send attack or retreat command
                                                                                             </requirement>
@@ -243,7 +243,7 @@
                                                                                             <next>
                                                                                               <block type="simple_requirement" id="496">
                                                                                                 <field name="req_id">R20</field>
-                                                                                                <field name="title">Lieutenants as traitor, send differrent command from the received by the general</field>
+                                                                                                <field name="title">Lieutenants as traitor, send the reverse command from the received by the general</field>
                                                                                                 <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
 --------------------------------
 1. Service : L1 send attack or retreat command
@@ -311,6 +311,32 @@
 4. Service : L3 runs away
                                                                                                                     </requirement>
                                                                                                                     <data>544,550,557</data>
+                                                                                                                    <next>
+                                                                                                                      <block type="simple_requirement" id="377">
+                                                                                                                        <field name="req_id">G1</field>
+                                                                                                                        <field name="title">All the loyal lieutenants must perform the same command</field>
+                                                                                                                        <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. Service : G performs goal
+2. Service : L1 perform goal
+3. Service : L2 perform goal
+4. Service : L3 perform goal
+                                                                                                                        </requirement>
+                                                                                                                        <next>
+                                                                                                                          <block type="simple_requirement" id="379">
+                                                                                                                            <field name="req_id">G2</field>
+                                                                                                                            <field name="title">Is not relevant the command performed by the traitor</field>
+                                                                                                                            <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. Service : G performs goal
+2. Service : L1 perform goal
+3. Service : L2 perform goal
+4. Service : L3 perform goal
+                                                                                                                            </requirement>
+                                                                                                                          </block>
+                                                                                                                        </next>
+                                                                                                                      </block>
+                                                                                                                    </next>
                                                                                                                   </block>
                                                                                                                 </next>
                                                                                                               </block>
@@ -548,7 +574,7 @@
           </block>
         </statement>
         <next>
-          <block type="CS$s" id="37">
+          <block type="CS$s" id="37" collapsed="true">
             <field name="cardinality">2</field>
             <field name="name">General</field>
             <field name="system_type">autonomous</field>
@@ -680,6 +706,8 @@
                                 <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
 -------------------------------------
 1. R21
+2. G1
+3. G2
                                 </requirement>
                                 <data>R21</data>
                                 <statement name="can_access:state_variable">
@@ -1015,7 +1043,7 @@
               </block>
             </statement>
             <next>
-              <block type="CS$s" id="39" collapsed="true">
+              <block type="CS$s" id="39">
                 <field name="cardinality">3</field>
                 <field name="name">Lieutenant_1</field>
                 <field name="system_type">autonomous</field>
@@ -1147,6 +1175,8 @@
                                     <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
 -------------------------------------
 1. R21
+2. G1
+3. G2
                                     </requirement>
                                     <data>R21</data>
                                     <statement name="can_access:state_variable">
@@ -1604,6 +1634,8 @@
                                         <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
 -------------------------------------
 1. R21
+2. G1
+3. G2
                                         </requirement>
                                         <data>R21</data>
                                         <statement name="can_access:state_variable">
@@ -2061,6 +2093,8 @@
                                             <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
 -------------------------------------
 1. R21
+2. G1
+3. G2
                                             </requirement>
                                             <data>R21</data>
                                             <statement name="can_access:state_variable">
