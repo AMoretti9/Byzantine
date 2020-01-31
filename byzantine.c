@@ -45,7 +45,8 @@ int random_command; //used to draw the initial command
 int generalElected; // uid of the kilobot chosen as general
 int traitorElected; // uid of the kilobot chosen as traitor
 int traitor_reverse; //used, by the traitor, to reverse the command only one time
-
+int declare_command; //used by declare the command only one time
+int generalCasualMovement ; //used to define the general movement, if it is the traitor
 
 int time_to_move[4]; // used to define the round of movement for each kilobot
 
@@ -339,9 +340,7 @@ void loop() {   //32 ticks = 1 sec
 		if(kilo_uid==time_to_move[0]){
 			set_motion(STOP);
 		}		
-			printf("\nsomma di %d", time_to_move[1]); printf(" uguale a = %d", (L1_commands[0]+L1_commands[1]+L1_commands[2]));  //util
-			printf("\nsomma di %d", time_to_move[2]); printf(" uguale a = %d", (L2_commands[0]+L2_commands[1]+L2_commands[2]));  //util  
-			printf("\nsomma di %d", time_to_move[3]); printf(" uguale a = %d", (L3_commands[0]+L3_commands[1]+L3_commands[2]));  //util
+			
 	}
 	if(kilo_ticks>=1220 && kilo_ticks<1230){ // +10
 		//IF L1 IS THE TRAITOR, NOW REVERSE THE COMMAND
@@ -493,24 +492,458 @@ void loop() {   //32 ticks = 1 sec
 			set_motion(FORWARD);
 		}
 	}
-	if(kilo_ticks>2108 && kilo_ticks<2120 ){  //+12
+	if(kilo_ticks>2108 && kilo_ticks<2115 ){  //+7
 		if(kilo_uid==time_to_move[1]){
 			set_motion(STOP);
 			
-			printf("\nsomma di %d", time_to_move[1]); printf(" uguale a = %d", (L1_commands[0]+L1_commands[1]+L1_commands[2]));  //util
-			printf("\nsomma di %d", time_to_move[2]); printf(" uguale a = %d", (L2_commands[0]+L2_commands[1]+L2_commands[2]));  //util  
-			printf("\nsomma di %d", time_to_move[3]); printf(" uguale a = %d", (L3_commands[0]+L3_commands[1]+L3_commands[2]));  //util
 			
 		}
+	}
+		if(kilo_ticks>=2115 && kilo_ticks<2125){ // +10
+		//IF L2 IS THE TRAITOR, NOW REVERSE THE COMMAND
+		if(traitor==time_to_move[2]){
+			
+			if(traitor_reverse==0){
+				L2_commands[0]=T_reverseCommand(L2_commands[0], time_to_move[2]);
+			}
+			
+			message.data[1] = L2_commands[0];
+			message.data[2] = NULL; message.data[3] = NULL; //unused
+		} else{
+			message.data[1] = L2_commands[0];
+			message.data[2] = NULL; message.data[3] = NULL; //unused
+		}
+	}
+	
+		//=================================== MOVEMENT OF 3 (LIEUTENANT 2)
+	if(kilo_ticks>2125 && kilo_ticks<2167 ){   //+42
+		if(kilo_uid==time_to_move[2]){
+			set_motion(RIGHT);
+		}
+	}
+	if(kilo_ticks>2167 && kilo_ticks<2256 ){  //+89
+		if(kilo_uid==time_to_move[2]){
+			set_motion(FORWARD);
+		}
+	}
+
+		if(kilo_ticks>2256 && kilo_ticks<2356 ){ //+100 com
+		if(kilo_uid==time_to_move[2]){
+			set_motion(STOP);
+			message.crc=message_crc(&message); //TX
+		}
 		
-		message.data[1] = NULL;
-		message.data[2] = NULL;
-		message.data[3] = NULL;
+		if(kilo_uid==time_to_move[1]){
+			if(new_message==time_to_move[1]+1){ //RX of L1
+					new_message=0;
+					L1_commands[1]=message.data[1];
+					printf("\n___ K id %d  ___ receives 2nd command ___ ", time_to_move[1]);
+					printf("%d ___", L1_commands[1]);
+					printf(" at tick: %d", kilo_ticks);
+					printf("\n");
+			}
+		}
+		if(kilo_uid==time_to_move[3]){
+			if(new_message==time_to_move[3]+1){ //RX of L3
+					new_message=0;
+					L3_commands[2]=message.data[1];
+					printf("\n___ K id %d  ___ receives 2nd command ___ ", time_to_move[3]);
+					printf("%d ___", L3_commands[2]);
+					printf(" at tick: %d", kilo_ticks);
+					printf("\n");
+			}
+		}
+	}
+	
+		if(kilo_ticks>2356 && kilo_ticks<2450 ){  //+94
+		if(kilo_uid==time_to_move[2]){
+			set_motion(LEFT);
+		}
+	}
+	if(kilo_ticks>2450 && kilo_ticks<2505 ){  //+55
+		if(kilo_uid==time_to_move[2]){
+			set_motion(FORWARD);
+		}
+	}
+	
+	if(kilo_ticks>2505 && kilo_ticks<2605 ){  // +100 com
+		if(kilo_uid==time_to_move[2]){
+			set_motion(STOP);
+			message.crc=message_crc(&message); //TX
+		}
+		
+		
+		if(kilo_uid==time_to_move[1]){
+			if(new_message==time_to_move[1]+1){ //RX of L1
+					new_message=0;
+					L1_commands[1]=message.data[1];
+					printf("\n___ K id %d  ___ receives 2nd command ___ ", time_to_move[1]);
+					printf("%d ___", L1_commands[1]);
+					printf(" at tick: %d", kilo_ticks);
+					printf("\n");
+			}
+		}
+		if(kilo_uid==time_to_move[3]){
+			if(new_message==time_to_move[3]+1){ //RX of L3
+					new_message=0;
+					L3_commands[2]=message.data[1];
+					printf("\n___ K id %d  ___ receives 2nd command ___ ", time_to_move[3]);
+					printf("%d ___", L3_commands[2]);
+					printf(" at tick: %d", kilo_ticks);
+					printf("\n");
+			}
+		}
+			
+	}
+	
+	if(kilo_ticks>2605 && kilo_ticks<2732 ){  //+127
+		if(kilo_uid==time_to_move[2]){
+			set_motion(LEFT);
+		}
+	}
+	if(kilo_ticks>2732 && kilo_ticks<2792 ){  //+60
+		if(kilo_uid==time_to_move[2]){
+			set_motion(FORWARD);
+		}
+	}
+	
+	if(kilo_ticks>2792 && kilo_ticks<2917 ){  //+125 com
+		if(kilo_uid==time_to_move[2]){
+			set_motion(STOP);
+			message.crc=message_crc(&message); //TX
+		}
+		
+		
+		if(kilo_uid==time_to_move[1]){
+			if(new_message==time_to_move[1]+1){ //RX of L1
+					new_message=0;
+					L1_commands[1]=message.data[1];
+					printf("\n___ K id %d  ___ receives 2nd command ___ ", time_to_move[1]);
+					printf("%d ___", L1_commands[1]);
+					printf(" at tick: %d", kilo_ticks);
+					printf("\n");
+			}
+		}
+		if(kilo_uid==time_to_move[3]){
+			if(new_message==time_to_move[3]+1){ //RX of L3
+					new_message=0;
+					L3_commands[2]=message.data[1];
+					printf("\n___ K id %d  ___ receives 2nd command ___ ", time_to_move[3]);
+					printf("%d ___", L3_commands[2]);
+					printf(" at tick: %d", kilo_ticks);
+					printf("\n");
+			}
+		}
 		
 	}
 	
+		if(kilo_ticks>2917 && kilo_ticks<3035 ){  //+118
+		if(kilo_uid==time_to_move[2]){
+			set_motion(LEFT);
+		}
+	}
+	if(kilo_ticks>3035 && kilo_ticks<3128 ){  //+93
+		if(kilo_uid==time_to_move[2]){
+			set_motion(FORWARD);
+		}
+	}
+	if(kilo_ticks>3128 && kilo_ticks<3135 ){  //+7
+		if(kilo_uid==time_to_move[2]){
+			set_motion(STOP);
+			
+			
+		}
+	}
+
+	if(kilo_ticks>=3135 && kilo_ticks<3145){ // +10
+		//IF L3 IS THE TRAITOR, NOW REVERSE THE COMMAND
+		if(traitor==time_to_move[3]){
+			
+			if(traitor_reverse==0){
+				L3_commands[0]=T_reverseCommand(L3_commands[0], time_to_move[3]);
+			}
+			
+			message.data[1] = L3_commands[0];
+			message.data[2] = NULL; message.data[3] = NULL; //unused
+		} else{
+			message.data[1] = L3_commands[0];
+			message.data[2] = NULL; message.data[3] = NULL; //unused
+		}
+	}
+	
+		//=================================== MOVEMENT OF 4 (LIEUTENANT 3)
+	if(kilo_ticks>3145 && kilo_ticks<3187 ){   //+42
+		if(kilo_uid==time_to_move[3]){
+			set_motion(RIGHT);
+		}
+	}
+	if(kilo_ticks>3187 && kilo_ticks<3276 ){  //+89
+		if(kilo_uid==time_to_move[3]){
+			set_motion(FORWARD);
+		}
+	}
+	
+	if(kilo_ticks>3276 && kilo_ticks<3376 ){ //+100 com
+	if(kilo_uid==time_to_move[3]){
+		set_motion(STOP);
+		message.crc=message_crc(&message); //TX
+	}
+	
+	if(kilo_uid==time_to_move[1]){
+		if(new_message==time_to_move[1]+1){ //RX of L1
+				new_message=0;
+				L1_commands[2]=message.data[1];
+				printf("\n___ K id %d  ___ receives 2nd command ___ ", time_to_move[1]);
+				printf("%d ___", L1_commands[2]);
+				printf(" at tick: %d", kilo_ticks);
+				printf("\n");
+		}
+	}
+	if(kilo_uid==time_to_move[2]){
+		if(new_message==time_to_move[2]+1){ //RX of L2
+				new_message=0;
+				L2_commands[2]=message.data[1];
+				printf("\n___ K id %d  ___ receives 2nd command ___ ", time_to_move[2]);
+				printf("%d ___", L2_commands[2]);
+				printf(" at tick: %d", kilo_ticks);
+				printf("\n");
+		}
+	}
+	}
+	
+	if(kilo_ticks>3376 && kilo_ticks<3470 ){  //+94
+		if(kilo_uid==time_to_move[3]){
+			set_motion(LEFT);
+		}
+	}
+	if(kilo_ticks>3470 && kilo_ticks<3525 ){  //+55
+		if(kilo_uid==time_to_move[3]){
+			set_motion(FORWARD);
+		}
+	}
+	
+	
+	if(kilo_ticks>3525 && kilo_ticks<3625 ){  // +100 com
+		if(kilo_uid==time_to_move[3]){
+			set_motion(STOP);
+			message.crc=message_crc(&message); //TX
+		}
+		
+		
+		if(kilo_uid==time_to_move[1]){
+			if(new_message==time_to_move[1]+1){ //RX of L1
+				new_message=0;
+				L1_commands[2]=message.data[1];
+				printf("\n___ K id %d  ___ receives 2nd command ___ ", time_to_move[1]);
+				printf("%d ___", L1_commands[2]);
+				printf(" at tick: %d", kilo_ticks);
+				printf("\n");
+			}
+		}
+		if(kilo_uid==time_to_move[2]){
+			if(new_message==time_to_move[2]+1){ //RX of L2
+				new_message=0;
+				L2_commands[2]=message.data[1];
+				printf("\n___ K id %d  ___ receives 2nd command ___ ", time_to_move[2]);
+				printf("%d ___", L2_commands[2]);
+				printf(" at tick: %d", kilo_ticks);
+				printf("\n");
+			}
+		}
+			
+	}
+	
+	if(kilo_ticks>3625 && kilo_ticks<3752 ){  //+127
+		if(kilo_uid==time_to_move[3]){
+			set_motion(LEFT);
+		}
+	}
+	if(kilo_ticks>3752 && kilo_ticks<3812 ){  //+60
+		if(kilo_uid==time_to_move[3]){
+			set_motion(FORWARD);
+		}
+	}
+	
+	if(kilo_ticks>3812 && kilo_ticks<3937 ){  //+125 com
+		if(kilo_uid==time_to_move[3]){
+			set_motion(STOP);
+			message.crc=message_crc(&message); //TX
+		}
+		
+		
+		if(kilo_uid==time_to_move[1]){
+			if(new_message==time_to_move[1]+1){ //RX of L1
+				new_message=0;
+				L1_commands[2]=message.data[1];
+				printf("\n___ K id %d  ___ receives 2nd command ___ ", time_to_move[1]);
+				printf("%d ___", L1_commands[2]);
+				printf(" at tick: %d", kilo_ticks);
+				printf("\n");
+			}
+		}
+		if(kilo_uid==time_to_move[2]){
+			if(new_message==time_to_move[2]+1){ //RX of L2
+				new_message=0;
+				L2_commands[2]=message.data[1];
+				printf("\n___ K id %d  ___ receives 2nd command ___ ", time_to_move[2]);
+				printf("%d ___", L2_commands[2]);
+				printf(" at tick: %d", kilo_ticks);
+				printf("\n");
+			}
+		}
+		
+	}
+	
+	if(kilo_ticks>3937 && kilo_ticks<4055 ){  //+118
+		if(kilo_uid==time_to_move[3]){
+			set_motion(LEFT);
+		}
+	}
+	if(kilo_ticks>4055 && kilo_ticks<4148 ){  //+93
+		if(kilo_uid==time_to_move[3]){
+			set_motion(FORWARD);
+		}
+	}
+	
+	if(kilo_ticks>4148 && kilo_ticks<4155 ){  //+7
+		if(kilo_uid==time_to_move[3]){
+			set_motion(STOP);
+			
+			
+		}
+	}
+	
+	if(kilo_ticks>4155 && kilo_ticks<4160){
+	// decide to the GOAL TO PERFORM	
+	// IF GENERAL IS LOYAL perform his command; IF GENERAL IS TRAITOR perform a casual command
+	// LIEUTENANTS perform the command received in MAJORITY
+	
+	// ALL LOYALS KILOBOT, MUST PERFORM THE SAME ACTION
+	
+	if(declare_command==0){
+		declareCommand();
+	}
+	
+	}
+	
+	// ATTACK:   led green, turn around
+	// RETREAT: led red, run away
+	if(kilo_ticks>4160 && kilo_ticks< 4270){  
+		//////////////////////////
+		if(kilo_uid==time_to_move[0]){
+			if(general==traitor){
+				if(generalCasualMovement==1){
+					set_color(RGB(0,3,0));
+					set_motion(RIGHT);
+				}else{
+					set_color(RGB(3,0,0));
+					set_motion(FORWARD);
+				}
+			}else{
+				if(G_commands[0]==1){
+					set_color(RGB(0,3,0));
+					set_motion(RIGHT);
+				}else{
+					set_color(RGB(3,0,0));
+					set_motion(FORWARD);
+				}
+			}
+		}
+		
+		if(kilo_uid==time_to_move[1]){
+			if((L1_commands[0]+L1_commands[1]+L1_commands[2]) <= 4){
+				set_color(RGB(0,3,0));
+				set_motion(RIGHT);
+			}else{
+				set_color(RGB(3,0,0));
+				set_motion(FORWARD);
+			}
+		}
+		
+		if(kilo_uid==time_to_move[2]){
+			if((L2_commands[0]+L2_commands[1]+L2_commands[2]) <= 4){
+				set_color(RGB(0,3,0));
+				set_motion(RIGHT);
+			}else{
+				set_color(RGB(3,0,0));
+				set_motion(FORWARD);
+			}
+		}
+		
+		if(kilo_uid==time_to_move[3]){
+			if((L3_commands[0]+L3_commands[1]+L3_commands[2]) <= 4){
+				set_color(RGB(0,3,0));
+				set_motion(RIGHT);
+			}else{
+				set_color(RGB(3,0,0));
+				set_motion(FORWARD);
+			}
+		}
+	
+	
+
+	}
+	
+	
+	
+	if(kilo_ticks>4270 && kilo_ticks<4900){
+		if(kilo_uid==time_to_move[0]){
+			if(general==traitor){
+				if(generalCasualMovement==1){
+					set_color(RGB(0,3,0));
+					set_motion(RIGHT);
+				}else{
+					set_color(RGB(3,0,0));
+					set_motion(STOP);
+				}
+			}else{
+				if(G_commands[0]==1){
+					set_color(RGB(0,3,0));
+					set_motion(RIGHT);
+				}else{
+					set_color(RGB(3,0,0));
+					set_motion(STOP);
+				}
+			}
+		}
+		
+		if(kilo_uid==time_to_move[1]){
+			if((L1_commands[0]+L1_commands[1]+L1_commands[2]) <= 4){
+				set_color(RGB(0,3,0));
+				set_motion(RIGHT);
+			}else{
+				set_color(RGB(3,0,0));
+				set_motion(STOP);
+			}
+		}
+		
+		if(kilo_uid==time_to_move[2]){
+			if((L2_commands[0]+L2_commands[1]+L2_commands[2]) <= 4){
+				set_color(RGB(0,3,0));
+				set_motion(RIGHT);
+			}else{
+				set_color(RGB(3,0,0));
+				set_motion(STOP);
+			}
+		}
+		
+		if(kilo_uid==time_to_move[3]){
+			if((L3_commands[0]+L3_commands[1]+L3_commands[2]) <= 4){
+				set_color(RGB(0,3,0));
+				set_motion(RIGHT);
+			}else{
+				set_color(RGB(3,0,0));
+				set_motion(STOP);
+			}
+		}
+		
+		
+		
+	}
 	
 }
+
+///////////////// END LOOP
 
 int main() {
     kilo_init();
@@ -554,7 +987,7 @@ int traitor_draw(){
 	} else{
 		printf("===============\nINFO: the TRAITOR is the kilobot with uid: %d\n===============\n", traitor);
 	}
-	
+	//traitor=general; // ********************* uncomment to trigger the case: general == traitor
 	return traitor;
 }
 
@@ -631,10 +1064,52 @@ int T_reverseCommand(int command, int traitorID){
 	traitor_reverse=1;
 	
 	if(command==1){
-		printf("\n\n=============== traitor uid: %d,  reverse the command 1  -->  2 ===============", traitorID);
+		printf("\n\n=*=*=*=*=*=*=*=*=*=* TRAITOR uid: %d,  reverse the command 1  -->  2 =*=*=*=*=*=*=*=*=*=*\n\n", traitorID);
 		return 2;
 	}else{
-		printf("\n\n=============== traitor uid: %d,  reverse the command 2  -->  1 ===============", traitorID);
+		printf("\n\n=*=*=*=*=*=*=*=*=*=* TRAITOR uid: %d,  reverse the command 2  -->  1 =*=*=*=*=*=*=*=*=*=*", traitorID);
 		return 1;
 	}
+}
+
+void declareCommand(){
+	
+	declare_command = 1;
+	
+	printf("\n\n=============== COMMANDS ===============\n");
+	
+	if (general==traitor){
+		printf("\n   ||      GENERAL:       I'm the traitor (do casual command)");
+		
+		generalCasualMovement = (rand() %2)+1;
+		
+	}else{
+		if(G_commands[0]==1){
+			printf("\n   ||      GENERAL:       ATTACK!");
+		}else{
+			printf("\n   ||      GENERAL:       RETREAT!");
+		}
+	}
+	
+	if((L1_commands[0]+L1_commands[1]+L1_commands[2]) <= 4){
+		printf("\n   ||      LIEUTENANT 1:  ATTACK!");
+	}else{
+		printf("\n   ||      LIEUTENANT 1:  RETREAT!");
+	}
+	
+	if((L2_commands[0]+L2_commands[1]+L2_commands[2]) <= 4){
+		printf("\n   ||      LIEUTENANT 2:  ATTACK!");
+	}else{
+		printf("\n   ||      LIEUTENANT 2:  RETREAT!");
+	}
+	
+	if((L3_commands[0]+L3_commands[1]+L3_commands[2]) <= 4){
+		printf("\n   ||      LIEUTENANT 3:  ATTACK!");
+	}else{
+		printf("\n   ||      LIEUTENANT 3:  RETREAT!");
+	}
+	
+		printf("\n\n========================================\n\n");
+
+	
 }
