@@ -44,6 +44,8 @@ int random_traitor;  // used to draw the traitor only one time
 int random_command; //used to draw the initial command
 int generalElected; // uid of the kilobot chosen as general
 int traitorElected; // uid of the kilobot chosen as traitor
+int traitor_reverse; //used, by the traitor, to reverse the command only one time
+
 
 int time_to_move[4]; // used to define the round of movement for each kilobot
 
@@ -130,6 +132,7 @@ void setup()
 	random_general=0;
 	random_traitor=0;
 	random_command=0;
+	traitor_reverse=0;
 	
 	if (kilo_uid < 4)
     set_color(RGB(3,3,3));  // all kilobots start white
@@ -223,10 +226,7 @@ void loop() {   //32 ticks = 1 sec
 					printf(" at tick: %d", kilo_ticks);
 					printf("\n");
 			}
-		}
-		
-		
-		
+		}		
 	}
 	
 	if(kilo_ticks>441 && kilo_ticks<535 ){  //+94
@@ -322,11 +322,9 @@ void loop() {   //32 ticks = 1 sec
 					printf(" at tick: %d", kilo_ticks);
 					printf("\n");
 			}
-		}
-		
+		}	
 	}
-	
-	
+		
 	if(kilo_ticks>1002 && kilo_ticks<1120 ){  //+118
 		if(kilo_uid==time_to_move[0]){
 			set_motion(LEFT);
@@ -337,24 +335,28 @@ void loop() {   //32 ticks = 1 sec
 			set_motion(FORWARD);
 		}
 	}
-	if(kilo_ticks>1213 && kilo_ticks<1225 ){  //+12
+	if(kilo_ticks>1213 && kilo_ticks<1220 ){  //+7
 		if(kilo_uid==time_to_move[0]){
 			set_motion(STOP);
-			
+		}		
 			printf("\nsomma di %d", time_to_move[1]); printf(" uguale a = %d", (L1_commands[0]+L1_commands[1]+L1_commands[2]));  //util
 			printf("\nsomma di %d", time_to_move[2]); printf(" uguale a = %d", (L2_commands[0]+L2_commands[1]+L2_commands[2]));  //util  
 			printf("\nsomma di %d", time_to_move[3]); printf(" uguale a = %d", (L3_commands[0]+L3_commands[1]+L3_commands[2]));  //util
-			
-		}
-		
-		
-		
+	}
+	if(kilo_ticks>=1220 && kilo_ticks<1230){ // +10
 		//IF L1 IS THE TRAITOR, NOW REVERSE THE COMMAND
-		
-		
-		message.data[1] = L1_commands[0];
-		message.data[2] = NULL; message.data[3] = NULL; //unused
-		
+		if(traitor==time_to_move[1]){
+			
+			if(traitor_reverse==0){
+				L1_commands[0]=T_reverseCommand(L1_commands[0], time_to_move[1]);
+			}
+			
+			message.data[1] = L1_commands[0];
+			message.data[2] = NULL; message.data[3] = NULL; //unused
+		} else{
+			message.data[1] = L1_commands[0];
+			message.data[2] = NULL; message.data[3] = NULL; //unused
+		}
 	}
 	
 	
@@ -554,7 +556,6 @@ int traitor_draw(){
 	}
 	
 	return traitor;
-		
 }
 
 void time_to_move_impl(int general){
@@ -591,15 +592,22 @@ void createGeneralCommands(int general, int traitor){
 			for(int count = 0; count<4; count++){
 				G_commands[count]=new_command;
 			}
-		} else{ //else if general is the traitor, create different orders
-			for(int count = 0; count<3; count++){
-				
+		} else{ //else if general is the traitor, create 2 equal orders and 1 different
+			
+			for(int count = 0; count<2; count++){
 				new_command=(rand() %2)+1;
-				
-				G_commands[count]=new_command;
-				new_command=NULL;
+				G_commands[count] = new_command;
 			}
-				G_commands[3] = (G_commands[1]%2)+1;
+			
+			if(G_commands[0] == G_commands[1]){
+				new_command=(rand() %2)+1;
+				G_commands[2]=new_command;
+				G_commands[3]=G_reverseCommand(G_commands[2]);
+			}else{
+				G_commands[2]=G_commands[0];
+				G_commands[3]=G_commands[0];
+			}
+			
 		}
 
 		printf("\n=============== Random general command... ===============");
@@ -608,4 +616,25 @@ void createGeneralCommands(int general, int traitor){
 		printf("\n\ncommand 2 = %d\n", G_commands[2]);
 		printf("\n\ncommand 3 = %d\n", G_commands[3]);
 		printf("\n=============== \n");
+}
+
+int G_reverseCommand(int command){
+	if(command==1){
+		return 2;
+	}else{
+		return 1;
+	}
+}
+
+int T_reverseCommand(int command, int traitorID){
+	
+	traitor_reverse=1;
+	
+	if(command==1){
+		printf("\n\n=============== traitor uid: %d,  reverse the command 1  -->  2 ===============", traitorID);
+		return 2;
+	}else{
+		printf("\n\n=============== traitor uid: %d,  reverse the command 2  -->  1 ===============", traitorID);
+		return 1;
+	}
 }
