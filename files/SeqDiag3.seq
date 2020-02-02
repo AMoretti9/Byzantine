@@ -1,0 +1,8 @@
+General\n(CS)->General\n(CS):[1]\nG move inside the square()
+General_interface\n(RUMI) -> Lieutenant1_interface\n(RUMI):[2]\nG_send_attack_or_retreat_command()\n(Service request)
+Lieutenant_1\n(CS)->Lieutenant_1\n(CS):[3]\nL1 receives attack or retreat command()
+General_interface\n(RUMI) -> Lieutenant2_interface\n(RUMI):[4]\nG_send_attack_or_retreat_command()\n(Service request)
+Lieutenant_2\n(CS)->Lieutenant_2\n(CS):[5]\nL2 receives attack or retreat command()
+General_interface\n(RUMI) -> Lieutenant3_interface\n(RUMI):[6]\nG_send_attack_or_retreat_command()\n(Service request)
+Lieutenant_3\n(CS)->Lieutenant_3\n(CS):[7]\nL3 receives attack or retreat command()
+General\n(CS)->General\n(CS):[8]\nG move to his place()

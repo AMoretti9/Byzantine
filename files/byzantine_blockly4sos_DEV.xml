@@ -438,6 +438,382 @@
       </block>
     </statement>
   </block>
+  <block type="sequence_diagram$s" id="386" collapsed="true" x="-275" y="-1033">
+    <field name="name">Setup phase</field>
+    <field name="#sub_sequence">+</field>
+    <statement name="has:sub_sequence">
+      <block type="sub_sequence$s" id="387">
+        <field name="name">General draw</field>
+        <field name="#sequence">+</field>
+        <statement name="has:sequence">
+          <block type="execute$s" id="388">
+            <field name="function">general_draw</field>
+            <field name="#CS">+</field>
+            <statement name="cs:CS">
+              <block type="__link" id="389">
+                <field name="link_to">CS / OHC</field>
+                <data>CS : 35 : 1</data>
+              </block>
+            </statement>
+            <next>
+              <block type="execute$s" id="390">
+                <field name="function">time_to_move_impl</field>
+                <field name="#CS">+</field>
+                <statement name="cs:CS">
+                  <block type="__link" id="391">
+                    <field name="link_to">CS / OHC</field>
+                    <data>CS : 35 : 1</data>
+                  </block>
+                </statement>
+                <next>
+                  <block type="service_request$s" id="392">
+                    <field name="arguments_in_CSV">True</field>
+                    <field name="on_condition">True</field>
+                    <field name="#state_variable">+</field>
+                    <field name="#service">+</field>
+                    <field name="#RUMI">+</field>
+                    <field name="#RUMI">+</field>
+                    <field name="#state_variable">+</field>
+                    <field name="#sequence">+</field>
+                    <field name="#sequence">+</field>
+                    <statement name="request:service">
+                      <block type="__link" id="393">
+                        <field name="link_to">Service / Select the general</field>
+                        <data>service : 362 : 1</data>
+                      </block>
+                    </statement>
+                    <statement name="source:RUMI">
+                      <block type="__link" id="394">
+                        <field name="link_to">RUMI / OCH_interface</field>
+                        <data>RUMI : 235 : 1</data>
+                      </block>
+                    </statement>
+                    <statement name="destination:RUMI">
+                      <block type="__link" id="395">
+                        <field name="link_to">RUMI / General_interface</field>
+                        <data>RUMI : 241 : 1</data>
+                      </block>
+                    </statement>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <next>
+          <block type="sub_sequence$s" id="396">
+            <field name="name">Traitor draw</field>
+            <field name="#sequence">+</field>
+            <statement name="has:sequence">
+              <block type="execute$s" id="397">
+                <field name="function">traitor_draw</field>
+                <field name="#CS">+</field>
+                <statement name="cs:CS">
+                  <block type="__link" id="398">
+                    <field name="link_to">CS / OHC</field>
+                    <data>CS : 35 : 1</data>
+                  </block>
+                </statement>
+                <next>
+                  <block type="If$s" id="399">
+                    <field name="name">Name</field>
+                    <field name="on_condition">general == traitor</field>
+                    <field name="#CS">+</field>
+                    <field name="#state_variable">+</field>
+                    <field name="#sequence">+</field>
+                    <field name="#sequence">+</field>
+                    <statement name="cs:CS">
+                      <block type="__link" id="418">
+                        <field name="link_to">CS / OHC</field>
+                        <data>CS : 35 : 1</data>
+                      </block>
+                    </statement>
+                    <statement name="on_success:sequence">
+                      <block type="service_request$s" id="400">
+                        <field name="arguments_in_CSV">True</field>
+                        <field name="on_condition">True</field>
+                        <field name="#state_variable">+</field>
+                        <field name="#service">+</field>
+                        <field name="#RUMI">+</field>
+                        <field name="#RUMI">+</field>
+                        <field name="#state_variable">+</field>
+                        <field name="#sequence">+</field>
+                        <field name="#sequence">+</field>
+                        <statement name="request:service">
+                          <block type="__link" id="401">
+                            <field name="link_to">Service / Select the traitor</field>
+                            <data>service : 364 : 1</data>
+                          </block>
+                        </statement>
+                        <statement name="source:RUMI">
+                          <block type="__link" id="402">
+                            <field name="link_to">RUMI / OCH_interface</field>
+                            <data>RUMI : 235 : 1</data>
+                          </block>
+                        </statement>
+                        <statement name="destination:RUMI">
+                          <block type="__link" id="403">
+                            <field name="link_to">RUMI / General_interface</field>
+                            <data>RUMI : 241 : 1</data>
+                          </block>
+                        </statement>
+                      </block>
+                    </statement>
+                    <statement name="on_failure:sequence">
+                      <block type="service_request$s" id="404">
+                        <field name="arguments_in_CSV">True</field>
+                        <field name="on_condition">True</field>
+                        <field name="#state_variable">+</field>
+                        <field name="#service">+</field>
+                        <field name="#RUMI">+</field>
+                        <field name="#RUMI">+</field>
+                        <field name="#state_variable">+</field>
+                        <field name="#sequence">+</field>
+                        <field name="#sequence">+</field>
+                        <statement name="request:service">
+                          <block type="__link" id="407">
+                            <field name="link_to">Service / Select the traitor</field>
+                            <data>service : 364 : 1</data>
+                          </block>
+                        </statement>
+                        <statement name="source:RUMI">
+                          <block type="__link" id="405">
+                            <field name="link_to">RUMI / OCH_interface</field>
+                            <data>RUMI : 235 : 1</data>
+                          </block>
+                        </statement>
+                        <statement name="destination:RUMI">
+                          <block type="__link" id="406">
+                            <field name="link_to">RUMI / Lieutenant1_interface</field>
+                            <data>RUMI : 242 : 1</data>
+                          </block>
+                        </statement>
+                      </block>
+                    </statement>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <next>
+      <block type="sequence_diagram$s" id="409" collapsed="true">
+        <field name="name">Command definition</field>
+        <field name="#sub_sequence">+</field>
+        <statement name="has:sub_sequence">
+          <block type="sub_sequence$s" id="410">
+            <field name="name">General is traitor</field>
+            <field name="#sequence">+</field>
+            <statement name="has:sequence">
+              <block type="If$s" id="411">
+                <field name="name">Name</field>
+                <field name="on_condition">general == traitor</field>
+                <field name="#CS">+</field>
+                <field name="#state_variable">+</field>
+                <field name="#sequence">+</field>
+                <field name="#sequence">+</field>
+                <statement name="cs:CS">
+                  <block type="__link" id="416">
+                    <field name="link_to">CS / General</field>
+                    <data>CS : 37 : 1</data>
+                  </block>
+                </statement>
+                <statement name="on_success:sequence">
+                  <block type="execute$s" id="412">
+                    <field name="function">create_general_command_2EQUALS_1DIFFERENT</field>
+                    <field name="#CS">+</field>
+                    <statement name="cs:CS">
+                      <block type="__link" id="413">
+                        <field name="link_to">CS / General</field>
+                        <data>CS : 37 : 1</data>
+                      </block>
+                    </statement>
+                  </block>
+                </statement>
+                <statement name="on_failure:sequence">
+                  <block type="execute$s" id="414">
+                    <field name="function">create_general_command_3EQUALS</field>
+                    <field name="#CS">+</field>
+                    <statement name="cs:CS">
+                      <block type="__link" id="415">
+                        <field name="link_to">CS / General</field>
+                        <data>CS : 37 : 1</data>
+                      </block>
+                    </statement>
+                  </block>
+                </statement>
+              </block>
+            </statement>
+          </block>
+        </statement>
+      </block>
+    </next>
+  </block>
+  <block type="sequence_diagram$s" id="420" x="-274" y="-938">
+    <field name="name">Algorithm</field>
+    <field name="#sub_sequence">+</field>
+    <statement name="has:sub_sequence">
+      <block type="sub_sequence$s" id="421" collapsed="true">
+        <field name="name">General phase</field>
+        <field name="#sequence">+</field>
+        <statement name="has:sequence">
+          <block type="execute$s" id="424" collapsed="true">
+            <field name="function">G move inside the square</field>
+            <field name="#CS">+</field>
+            <statement name="cs:CS">
+              <block type="__link" id="425">
+                <field name="link_to">CS / General</field>
+                <data>CS : 37 : 1</data>
+              </block>
+            </statement>
+            <next>
+              <block type="service_request$s" id="426" collapsed="true">
+                <field name="arguments_in_CSV">True</field>
+                <field name="on_condition">True</field>
+                <field name="#state_variable">+</field>
+                <field name="#service">+</field>
+                <field name="#RUMI">+</field>
+                <field name="#RUMI">+</field>
+                <field name="#state_variable">+</field>
+                <field name="#sequence">+</field>
+                <field name="#sequence">+</field>
+                <statement name="request:service">
+                  <block type="__link" id="427">
+                    <field name="link_to">Service / G send attack or retreat command</field>
+                    <data>service : 268 : 1</data>
+                  </block>
+                </statement>
+                <statement name="source:RUMI">
+                  <block type="__link" id="428">
+                    <field name="link_to">RUMI / General_interface</field>
+                    <data>RUMI : 241 : 1</data>
+                  </block>
+                </statement>
+                <statement name="destination:RUMI">
+                  <block type="__link" id="429">
+                    <field name="link_to">RUMI / Lieutenant1_interface</field>
+                    <data>RUMI : 242 : 1</data>
+                  </block>
+                </statement>
+                <next>
+                  <block type="execute$s" id="436" collapsed="true">
+                    <field name="function">L1 receives attack or retreat command</field>
+                    <field name="#CS">+</field>
+                    <statement name="cs:CS">
+                      <block type="__link" id="437">
+                        <field name="link_to">CS / Lieutenant_1</field>
+                        <data>CS : 39 : 1</data>
+                      </block>
+                    </statement>
+                    <next>
+                      <block type="service_request$s" id="454" collapsed="true">
+                        <field name="arguments_in_CSV">True</field>
+                        <field name="on_condition">True</field>
+                        <field name="#state_variable">+</field>
+                        <field name="#service">+</field>
+                        <field name="#RUMI">+</field>
+                        <field name="#RUMI">+</field>
+                        <field name="#state_variable">+</field>
+                        <field name="#sequence">+</field>
+                        <field name="#sequence">+</field>
+                        <statement name="request:service">
+                          <block type="__link" id="455">
+                            <field name="link_to">Service / G send attack or retreat command</field>
+                            <data>service : 268 : 1</data>
+                          </block>
+                        </statement>
+                        <statement name="source:RUMI">
+                          <block type="__link" id="456">
+                            <field name="link_to">RUMI / General_interface</field>
+                            <data>RUMI : 241 : 1</data>
+                          </block>
+                        </statement>
+                        <statement name="destination:RUMI">
+                          <block type="__link" id="458">
+                            <field name="link_to">RUMI / Lieutenant2_interface</field>
+                            <data>RUMI : 243 : 1</data>
+                          </block>
+                        </statement>
+                        <next>
+                          <block type="execute$s" id="461" collapsed="true">
+                            <field name="function">L2 receives attack or retreat command</field>
+                            <field name="#CS">+</field>
+                            <statement name="cs:CS">
+                              <block type="__link" id="463">
+                                <field name="link_to">CS / Lieutenant_2</field>
+                                <data>CS : 41 : 1</data>
+                              </block>
+                            </statement>
+                            <next>
+                              <block type="service_request$s" id="468" collapsed="true">
+                                <field name="arguments_in_CSV">True</field>
+                                <field name="on_condition">True</field>
+                                <field name="#state_variable">+</field>
+                                <field name="#service">+</field>
+                                <field name="#RUMI">+</field>
+                                <field name="#RUMI">+</field>
+                                <field name="#state_variable">+</field>
+                                <field name="#sequence">+</field>
+                                <field name="#sequence">+</field>
+                                <statement name="request:service">
+                                  <block type="__link" id="469">
+                                    <field name="link_to">Service / G send attack or retreat command</field>
+                                    <data>service : 268 : 1</data>
+                                  </block>
+                                </statement>
+                                <statement name="source:RUMI">
+                                  <block type="__link" id="470">
+                                    <field name="link_to">RUMI / General_interface</field>
+                                    <data>RUMI : 241 : 1</data>
+                                  </block>
+                                </statement>
+                                <statement name="destination:RUMI">
+                                  <block type="__link" id="472">
+                                    <field name="link_to">RUMI / Lieutenant3_interface</field>
+                                    <data>RUMI : 244 : 1</data>
+                                  </block>
+                                </statement>
+                                <next>
+                                  <block type="execute$s" id="475" collapsed="true">
+                                    <field name="function">L3 receives attack or retreat command</field>
+                                    <field name="#CS">+</field>
+                                    <statement name="cs:CS">
+                                      <block type="__link" id="477">
+                                        <field name="link_to">CS / Lieutenant_3</field>
+                                        <data>CS : 43 : 1</data>
+                                      </block>
+                                    </statement>
+                                    <next>
+                                      <block type="execute$s" id="487" collapsed="true">
+                                        <field name="function">G move to his place</field>
+                                        <field name="#CS">+</field>
+                                        <statement name="cs:CS">
+                                          <block type="__link" id="493">
+                                            <field name="link_to">CS / General</field>
+                                            <data>CS : 37 : 1</data>
+                                          </block>
+                                        </statement>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
   <block type="SoS$s" id="33" x="-1399" y="-836">
     <field name="name">Byzantine</field>
     <field name="sos_type">acknowledged</field>
@@ -452,7 +828,7 @@
     </requirement>
     <data>R01</data>
     <statement name="is_composed_of:system">
-      <block type="CS$s" id="35">
+      <block type="CS$s" id="35" collapsed="true">
         <field name="cardinality">1</field>
         <field name="name">OHC</field>
         <field name="system_type">autonomous</field>

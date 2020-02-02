@@ -1,0 +1,5 @@
+note over general\n(CS):if general==traitor {
+general\n(CS)->general\n(CS):[1]\ncreate_general_command_2EQUALS_1DIFFERENT
+note over general\n(CS):} /* Else {*/
+general\n(CS)->general\n(CS):[1]\ncreate_general_command_3EQUALS
+note over general\n(CS):} /* }end if */

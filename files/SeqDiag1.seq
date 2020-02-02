@@ -1,0 +1,9 @@
+OHC\n(CS)->OHC\n(CS):[1]\ngeneral_draw()
+OHC\n(CS)->OHC\n(CS):[2]\ntime_to_move_impl(general)
+OCH_interface\n(RUMI) -> General_interface\n(RUMI):[3]\nSelect_the_general()\n(Service request)
+OHC\n(CS)->OHC\n(CS):[4]\ntraitor_draw()
+note over OHC\n(CS):if general==traitor {
+OCH_interface\n(RUMI) -> General_interface\n(RUMI):[5]\nSelect_the_traitor()\n(Service request)
+note over OHC\n(CS):} /* Else {*/
+OCH_interface\n(RUMI) -> Lieutenant1_interface\n(RUMI):[5]\nSelect_the_traitor()\n(Service request)
+note over OHC\n(CS):} /* }end if */
