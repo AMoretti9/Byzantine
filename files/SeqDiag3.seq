@@ -12,3 +12,23 @@ Lieutenant_2\n(CS)->Lieutenant_2\n(CS):[11]\nL2 receives attack or retreat comma
 Lieutenant1_interface\n(RUMI) -> Lieutenant3_interface\n(RUMI):[12]\nL1_send_attack_or_retreat_command()\n(Service request)
 Lieutenant_3\n(CS)->Lieutenant_3\n(CS):[13]\nL3 receives attack or retreat command()
 Lieutenant_1\n(CS)->Lieutenant_1\n(CS):[14]\nL1 move to his place()
+Lieutenant_2\n(CS)->Lieutenant_2\n(CS):[15]\nL2 move inside the square()
+Lieutenant2_interface\n(RUMI) -> Lieutenant1_interface\n(RUMI):[16]\nL2_send_attack_or_retreat_command()\n(Service request)
+Lieutenant_1\n(CS)->Lieutenant_1\n(CS):[17]\nL1 receives attack or retreat command()
+Lieutenant2_interface\n(RUMI) -> Lieutenant3_interface\n(RUMI):[18]\nL2_send_attack_or_retreat_command()\n(Service request)
+Lieutenant_3\n(CS)->Lieutenant_3\n(CS):[19]\nL3 receives attack or retreat command()
+Lieutenant_2\n(CS)->Lieutenant_2\n(CS):[20]\nL2 move to his place()
+Lieutenant_3\n(CS)->Lieutenant_3\n(CS):[21]\nL3 move inside the square()
+Lieutenant3_interface\n(RUMI) -> Lieutenant1_interface\n(RUMI):[22]\nL3_send_attack_or_retreat_command()\n(Service request)
+Lieutenant_1\n(CS)->Lieutenant_1\n(CS):[23]\nL1 receives attack or retreat command()
+Lieutenant3_interface\n(RUMI) -> Lieutenant2_interface\n(RUMI):[24]\nL3_send_attack_or_retreat_command()\n(Service request)
+Lieutenant_2\n(CS)->Lieutenant_2\n(CS):[25]\nL2 receives attack or retreat command()
+Lieutenant_3\n(CS)->Lieutenant_3\n(CS):[26]\nL3 move to his place()
+note over General\n(CS):if Role_of_G general == traitor {
+General\n(CS)->General\n(CS):[27]\nExecute_Casual_Command()
+note over General\n(CS):} /*} Else{ */
+General\n(CS)->General\n(CS):[27]\nExecute_Proper_Command()
+note over General\n(CS):} /* End if Role_of_G general == traitor */
+Lieutenant_1\n(CS)->Lieutenant_1\n(CS):[27]\nL1_perform_goal()
+Lieutenant_2\n(CS)->Lieutenant_2\n(CS):[27]\nL2_perform_goal()
+Lieutenant_3\n(CS)->Lieutenant_3\n(CS):[27]\nL3_perform_goal()
