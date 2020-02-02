@@ -829,7 +829,6 @@ void loop() {   //32 ticks = 1 sec
 	// ATTACK:   led green, turn around
 	// RETREAT: led red, run away
 	if(kilo_ticks>4160 && kilo_ticks< 4270){  
-		//////////////////////////
 		if(kilo_uid==time_to_move[0]){
 			if(general==traitor){
 				if(generalCasualMovement==1){
