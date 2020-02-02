@@ -811,6 +811,122 @@
             </next>
           </block>
         </statement>
+        <next>
+          <block type="sub_sequence$s" id="584" collapsed="true">
+            <field name="name">Lietenant1 phase</field>
+            <field name="#sequence">+</field>
+            <statement name="has:sequence">
+              <block type="execute$s" id="585" collapsed="true">
+                <field name="function">L1 move inside the square</field>
+                <field name="#CS">+</field>
+                <statement name="cs:CS">
+                  <block type="__link" id="607">
+                    <field name="link_to">CS / Lieutenant_1</field>
+                    <data>CS : 39 : 1</data>
+                  </block>
+                </statement>
+                <next>
+                  <block type="service_request$s" id="587" collapsed="true">
+                    <field name="arguments_in_CSV">True</field>
+                    <field name="on_condition">True</field>
+                    <field name="#state_variable">+</field>
+                    <field name="#service">+</field>
+                    <field name="#RUMI">+</field>
+                    <field name="#RUMI">+</field>
+                    <field name="#state_variable">+</field>
+                    <field name="#sequence">+</field>
+                    <field name="#sequence">+</field>
+                    <statement name="request:service">
+                      <block type="__link" id="608">
+                        <field name="link_to">Service / L1 send attack or retreat command</field>
+                        <data>service : 275 : 1</data>
+                      </block>
+                    </statement>
+                    <statement name="source:RUMI">
+                      <block type="__link" id="609">
+                        <field name="link_to">RUMI / Lieutenant1_interface</field>
+                        <data>RUMI : 242 : 1</data>
+                      </block>
+                    </statement>
+                    <statement name="destination:RUMI">
+                      <block type="__link" id="610">
+                        <field name="link_to">RUMI / Lieutenant2_interface</field>
+                        <data>RUMI : 243 : 1</data>
+                      </block>
+                    </statement>
+                    <next>
+                      <block type="execute$s" id="591" collapsed="true">
+                        <field name="function">L2 receives attack or retreat command</field>
+                        <field name="#CS">+</field>
+                        <statement name="cs:CS">
+                          <block type="__link" id="611">
+                            <field name="link_to">CS / Lieutenant_2</field>
+                            <data>CS : 41 : 1</data>
+                          </block>
+                        </statement>
+                        <next>
+                          <block type="service_request$s" id="593" collapsed="true">
+                            <field name="arguments_in_CSV">True</field>
+                            <field name="on_condition">True</field>
+                            <field name="#state_variable">+</field>
+                            <field name="#service">+</field>
+                            <field name="#RUMI">+</field>
+                            <field name="#RUMI">+</field>
+                            <field name="#state_variable">+</field>
+                            <field name="#sequence">+</field>
+                            <field name="#sequence">+</field>
+                            <statement name="request:service">
+                              <block type="__link" id="612">
+                                <field name="link_to">Service / L1 send attack or retreat command</field>
+                                <data>service : 275 : 1</data>
+                              </block>
+                            </statement>
+                            <statement name="source:RUMI">
+                              <block type="__link" id="613">
+                                <field name="link_to">RUMI / Lieutenant1_interface</field>
+                                <data>RUMI : 242 : 1</data>
+                              </block>
+                            </statement>
+                            <statement name="destination:RUMI">
+                              <block type="__link" id="614">
+                                <field name="link_to">RUMI / Lieutenant3_interface</field>
+                                <data>RUMI : 244 : 1</data>
+                              </block>
+                            </statement>
+                            <next>
+                              <block type="execute$s" id="597" collapsed="true">
+                                <field name="function">L3 receives attack or retreat command</field>
+                                <field name="#CS">+</field>
+                                <statement name="cs:CS">
+                                  <block type="__link" id="615">
+                                    <field name="link_to">CS / Lieutenant_3</field>
+                                    <data>CS : 43 : 1</data>
+                                  </block>
+                                </statement>
+                                <next>
+                                  <block type="execute$s" id="605" collapsed="true">
+                                    <field name="function">L1 move to his place</field>
+                                    <field name="#CS">+</field>
+                                    <statement name="cs:CS">
+                                      <block type="__link" id="616">
+                                        <field name="link_to">CS / Lieutenant_1</field>
+                                        <data>CS : 39 : 1</data>
+                                      </block>
+                                    </statement>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </next>
       </block>
     </statement>
   </block>
